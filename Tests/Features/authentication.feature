@@ -1,4 +1,4 @@
-@alice(Page) @reset-schema
+@alice(Page)
 Feature: Authentication
     Scenario: Login as victoire admin
         Given I am on "/login"

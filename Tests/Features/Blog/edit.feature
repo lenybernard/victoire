@@ -1,4 +1,3 @@
-@reset-schema
 @mink:selenium2
 @alice(Page) @alice(Blog) @alice(BlogTemplate)
 Feature: Edit an article

@@ -1,4 +1,4 @@
-@mink:selenium2 @alice(Page) @alice(Template) @reset-schema
+@mink:selenium2 @alice(Page) @alice(Template)
 Feature: Create business entity pages
 
     Background:

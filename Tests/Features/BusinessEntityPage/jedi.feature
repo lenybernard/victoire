@@ -1,4 +1,4 @@
-@mink:selenium2 @alice(Page) @alice(User) @reset-schema
+@mink:selenium2 @alice(Page) @alice(User)
 Feature: Manage jedis
 
     Background:

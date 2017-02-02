@@ -1,4 +1,4 @@
-@mink:selenium2 @alice(Page) @reset-schema
+@mink:selenium2 @alice(Page)
 Feature: Display a page's content in a modal
 
   Background:

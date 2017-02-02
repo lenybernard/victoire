@@ -1,4 +1,4 @@
-@mink:selenium2 @alice(Page) @alice(Template) @reset-schema
+@mink:selenium2 @alice(Page) @alice(Template)
 Feature: Test widgetMap
 # Ececuted tests:
 #  On a simple page:
@@ -9,7 +9,7 @@ Feature: Test widgetMap
   Background:
     Given I maximize the window
     And I am on homepage
-@reset-schema
+
 Scenario: I move first a widget from simple page
   Given the following WidgetMaps:
     | id | action | position | parent |  slot        |   view  |
@@ -28,7 +28,7 @@ Scenario: I move first a widget from simple page
   And I reload the page
   And "Widget 3" should precede "Widget 1"
 
-@reset-schema
+
 Scenario: I move up a widget from simple page
   Given the following WidgetMaps:
     | id | action | position | parent |  slot        |   view  |
@@ -47,7 +47,7 @@ Scenario: I move up a widget from simple page
   And I reload the page
   And "Widget 1" should precede "Widget 3"
 
-@reset-schema
+
 Scenario: I move down a widget from simple page
   Given the following WidgetMaps:
     | id | action | position | parent | slot         |   view  |
@@ -66,7 +66,7 @@ Scenario: I move down a widget from simple page
   And I reload the page
   Then "Widget 2" should precede "Widget 1"
 
-@reset-schema
+
 Scenario: I add widget in a position from simple page
   Then I switch to "layout" mode
   Then I should see "Nouveau Contenu"
@@ -101,7 +101,7 @@ Scenario: I add widget in a position from simple page
   And "Le côté Double de la force" should precede "Le côté Lumineux de la force"
   And "Le côté obscur de la force" should precede "Le côté Double de la force"
 
-@reset-schema
+
 Scenario: I delete widget from simple page
   Given the following WidgetMaps:
     | id | action | position | parent | slot         |   view  |

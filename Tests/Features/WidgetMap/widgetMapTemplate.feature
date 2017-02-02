@@ -1,4 +1,4 @@
-@mink:selenium2 @alice(Page) @alice(Template) @reset-schema
+@mink:selenium2 @alice(Page) @alice(Template)
 Feature: Test widgetMap
 # Ececuted tests:
 #  On a simple page with a template
@@ -17,7 +17,7 @@ Feature: Test widgetMap
     Given I maximize the window
     And I am on homepage
 
-@reset-schema
+
 Scenario: I move first a widget from template
   Given the following WidgetMaps:
     | id | action | position | parent |  slot        |   view  |
@@ -40,7 +40,7 @@ Scenario: I move first a widget from template
   And "Widget 1" should precede "Widget 3"
   And "Widget 3" should precede "Widget 2"
 
-@reset-schema
+
 Scenario: I move up a widget from template
   Given the following WidgetMaps:
     | id | action | position | parent |  slot        |   view  |
@@ -63,7 +63,7 @@ Scenario: I move up a widget from template
   And "Widget 1" should precede "Widget 3"
   And "Widget 3" should precede "Widget 2"
 
-@reset-schema
+
 Scenario: I move down a widget from template
   Given the following WidgetMaps:
     | id | action | position | parent | slot         |   view  |
@@ -86,7 +86,7 @@ Scenario: I move down a widget from template
   And "Widget 1" should precede "Widget 3"
   And "Widget 3" should precede "Widget 2"
 
-@reset-schema
+
 Scenario: I add widget in a position from template
   Given the following WidgetMaps:
     | id | action | position | parent | slot         |   view  |
@@ -120,7 +120,7 @@ Scenario: I add widget in a position from template
   And "Widget 1" should precede "Widget 3"
   And "Widget 3" should precede "Widget 2"
 
-@reset-schema
+
 Scenario: I delete widget from template
   Given the following WidgetMaps:
     | id | action | position | parent | slot         |   view  |
@@ -146,7 +146,7 @@ Scenario: I delete widget from template
   And "Widget 1" should precede "Widget 3"
   And "Widget 3" should precede "Widget 2"
 
-@reset-schema
+
   Scenario: I overwrite a widget from template
   Given the following WidgetMaps:
     | id | action | position | parent | slot         |   view  |
@@ -172,7 +172,7 @@ Scenario: I delete widget from template
   And "Widget 1" should precede "Widget 3"
   And "Widget 3" should precede "Widget 2"
 
-@reset-schema
+
 Scenario: I move an overwrite widget from template
   Given the following WidgetMaps:
     | id | action | position | parent | slot         |   view  |
@@ -195,7 +195,7 @@ Scenario: I move an overwrite widget from template
   And "Widget 1" should precede "Widget 3"
   And "Widget 3" should precede "Widget 2"
 
-@reset-schema
+
 Scenario: I add a widget after an overwrite widget from template
   Given the following WidgetMaps:
     | id | action    | position | parent | slot         |   view  | replaced |
@@ -225,7 +225,7 @@ Scenario: I add a widget after an overwrite widget from template
   And "Widget 1" should precede "Widget 3"
   And "Widget 3" should precede "Widget 2"
 
-@reset-schema
+
 Scenario: I delete an overwrite widget from template
   Given the following WidgetMaps:
     | id | action    | position | parent | slot         |   view  | replaced |
@@ -255,7 +255,7 @@ Scenario: I delete an overwrite widget from template
   And "Widget 1" should precede "Widget 3"
   And "Widget 3" should precede "Widget 2"
 
-@reset-schema
+
 Scenario: I move an overwrite widget on template
   Given the following WidgetMaps:
     | id | action    | position | parent | slot         |   view  | replaced |
@@ -280,7 +280,7 @@ Scenario: I move an overwrite widget on template
   Then "Widget 1" should precede "Widget 3 overwrite"
   Then "Widget 3 overwrite" should precede "Widget 2"
 
-@reset-schema
+
 Scenario: I add a widget after an overwrite widget on template
   Given the following WidgetMaps:
     | id | action    | position | parent | slot         |   view  | replaced |
@@ -310,7 +310,7 @@ Scenario: I add a widget after an overwrite widget on template
   And "Widget 3 overwrite" should precede "Widget 4"
   And "Widget 4" should precede "Widget 2"
 
-@reset-schema
+
 Scenario: I delete an overwrite widget on template
   Given the following WidgetMaps:
     | id | action    | position | parent | slot         |   view  | replaced |

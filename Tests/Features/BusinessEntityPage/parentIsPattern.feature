@@ -1,4 +1,4 @@
-@mink:selenium2 @alice(Page) @reset-schema
+@mink:selenium2 @alice(Page)
 Feature: Mercenary is not a BusinessEntity itself but extends Character which is one
 
     Background:

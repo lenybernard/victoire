@@ -8,6 +8,7 @@ use Behat\Mink\Exception\UnsupportedDriverActionException;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Behat\Symfony2Extension\Context\KernelDictionary;
 use Behat\Symfony2Extension\Driver\KernelDriver;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Knp\FriendlyContexts\Context\RawMinkContext;
 
 /**
@@ -25,6 +26,16 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     {
         $this->getSession()->wait($nbr * 1000);
     }
+
+    /**
+     * @BeforeScenario
+     */
+    public function truncateData()
+    {
+        $purger = new ORMPurger($this->getContainer()->get('doctrine')->getManager());
+        $purger->purge();
+    }
+
 
     public function getSymfonyProfile()
     {

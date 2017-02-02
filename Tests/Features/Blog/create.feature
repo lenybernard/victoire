@@ -1,4 +1,4 @@
-@mink:selenium2 @alice(Page)  @reset-schema
+@mink:selenium2 @alice(Page)
 Feature: Create a blog
 
 Background:
