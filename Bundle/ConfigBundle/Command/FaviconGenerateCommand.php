@@ -48,8 +48,6 @@ class FaviconGenerateCommand extends ContainerAwareCommand
      * @param OutputInterface $output
      *
      * @throws \Exception
-     *
-     * @return bool
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {

@@ -11,21 +11,21 @@ use Victoire\Bundle\ConfigBundle\Entity\GlobalConfig;
 class FaviconGenerator
 {
     /**
-     * @var FaviconConfigDumper
-     */
-    private $faviconConfigDumper;
-    /**
      * @var string
      */
     public $nodePath;
     /**
      * @var string
      */
-    private $realFaviconPath;
+    public $target;
+    /**
+     * @var FaviconConfigDumper
+     */
+    private $faviconConfigDumper;
     /**
      * @var string
      */
-    public $target;
+    private $realFaviconPath;
 
     /**
      * FaviconGenerator constructor.
@@ -48,6 +48,9 @@ class FaviconGenerator
     /**
      * Generate favicons from realfavicon generator and a GlobalConfig object.
      *
+     * @param GlobalConfig $globalConfig
+     * @param string       $path
+     *
      * @return array The generated files
      */
     public function generate(GlobalConfig $globalConfig, $path = 'faviconConfig.json')
@@ -58,7 +61,11 @@ class FaviconGenerator
     /**
      * Generate favicons from a config file.
      *
+     * @param string $configPath
+     *
      * @return array The generated files
+     *
+     * @throws GenerateFaviconException
      */
     public function generateFromConfigFile(string $configPath)
     {
