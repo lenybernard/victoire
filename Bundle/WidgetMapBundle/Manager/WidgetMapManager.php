@@ -36,6 +36,8 @@ class WidgetMapManager
      * Insert a WidgetMap in a view at given position.
      *
      * @param string $slotId
+     * @param mixed  $position
+     * @param mixed  $widgetReference
      */
     public function insert(Widget $widget, View $view, $slotId, $position, $widgetReference)
     {

@@ -15,7 +15,9 @@ class VictoireCache extends PhpFileCache
     /**
      * Constructor.
      *
-     * @param bool $businessEntityDebug The businessEntityDebug environment
+     * @param bool  $businessEntityDebug The businessEntityDebug environment
+     * @param mixed $directory
+     * @param mixed $extension
      */
     public function __construct($businessEntityDebug, $directory, $extension = self::EXTENSION)
     {
@@ -26,9 +28,10 @@ class VictoireCache extends PhpFileCache
     /**
      * Fetches an entry from the cache.
      *
-     * @param string $id cache id The id of the cache entry to fetch.
+     * @param string     $id           cache id The id of the cache entry to fetch
+     * @param null|mixed $defaultValue
      *
-     * @return mixed The cached data or FALSE, if no cache entry exists for the given id.
+     * @return mixed the cached data or FALSE, if no cache entry exists for the given id
      */
     public function get($id, $defaultValue = null)
     {
@@ -42,10 +45,11 @@ class VictoireCache extends PhpFileCache
     /**
      * Puts data into the cache.
      *
-     * @param string $id   The cache id.
-     * @param mixed  $data The cache entry/data.
+     * @param string $id   the cache id
+     * @param mixed  $data the cache entry/data
+     * @param mixed  $ttl
      *
-     * @return bool TRUE if the entry was successfully stored in the cache, FALSE otherwise.
+     * @return bool TRUE if the entry was successfully stored in the cache, FALSE otherwise
      */
     public function save($id, $data, $ttl = 20)
     {

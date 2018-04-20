@@ -46,7 +46,7 @@ class PageToIdTransformer implements DataTransformerInterface
      *
      * @param string $id
      *
-     * @throws TransformationFailedException if object (Page) is not found.
+     * @throws TransformationFailedException if object (Page) is not found
      *
      * @return Page|null
      */

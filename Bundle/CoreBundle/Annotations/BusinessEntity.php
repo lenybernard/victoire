@@ -35,8 +35,8 @@ class BusinessEntity
         //return an array, no matter one or many widget defined
         if (count($this->widgets['value']) > 1) {
             return $this->widgets['value'];
-        } else {
-            return [$this->widgets['value']];
         }
+
+        return [$this->widgets['value']];
     }
 }

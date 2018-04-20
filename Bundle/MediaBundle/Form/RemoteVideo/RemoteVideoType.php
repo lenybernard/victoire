@@ -35,7 +35,6 @@ class RemoteVideoType extends AbstractType
                     'vimeo'       => 'vimeo',
                     'dailymotion' => 'dailymotion',
                 ],
-
             ]);
     }
 

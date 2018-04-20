@@ -47,7 +47,6 @@ class UrlMatcher
         $BusinessTemplateHelper = $this->BusinessTemplateHelper;
         $businessEntityHelper = $this->businessEntityHelper;
 
-        //
         $shorterUrl = $url;
         $shorterCount = 0;
         $BusinessTemplate = null;

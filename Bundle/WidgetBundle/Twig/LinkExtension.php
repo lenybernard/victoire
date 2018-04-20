@@ -189,9 +189,11 @@ class LinkExtension extends \Twig_Extension
     /**
      * Generate the complete link (with the a tag).
      *
-     * @param array  $parameters The link parameters (go to LinkTrait to have the list)
-     * @param string $label      link label
-     * @param array  $attr       custom attributes
+     * @param array  $parameters   The link parameters (go to LinkTrait to have the list)
+     * @param string $label        link label
+     * @param array  $attr         custom attributes
+     * @param mixed  $currentClass
+     * @param mixed  $url
      *
      * @return string
      */
@@ -245,6 +247,8 @@ class LinkExtension extends \Twig_Extension
      * @param array  $parameters The link parameters (go to LinkTrait to have the list)
      * @param string $label      link label
      * @param array  $attr       custom attributes
+     * @param mixed  $linkAttr
+     * @param mixed  $listAttr
      *
      * @return string
      */

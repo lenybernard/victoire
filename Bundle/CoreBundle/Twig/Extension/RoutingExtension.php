@@ -104,8 +104,6 @@ class RoutingExtension extends BaseRoutingExtension
      * If victoire_i18n.locale_pattern == domain, then we force the url rewrite with a valid host.
      *
      * @param $locale
-     *
-     * @return null
      */
     protected function getPrefix($locale)
     {

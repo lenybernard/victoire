@@ -63,6 +63,15 @@ class I18nRouteLoader extends BaseRouteLoader
     }
 
     /**
+     * Finds a loader able to load an imported resource.
+     * {@inheritdoc}
+     */
+    public function supports($resource, $type = null)
+    {
+        return $type === 'victoire_i18n';
+    }
+
+    /**
      * Add a homepage redirection route to the collection.
      *
      * @param RouteCollection $collection The collection where to add the new route
@@ -79,14 +88,5 @@ class I18nRouteLoader extends BaseRouteLoader
         );
 
         $collection->add('victoire_redirect_homepage', $route);
-    }
-
-    /**
-     * Finds a loader able to load an imported resource.
-     * {@inheritdoc}
-     */
-    public function supports($resource, $type = null)
-    {
-        return $type === 'victoire_i18n';
     }
 }

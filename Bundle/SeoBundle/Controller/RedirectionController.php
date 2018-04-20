@@ -160,10 +160,9 @@ class RedirectionController extends Controller
                     ]), 200, [
                         'X-Inject-Alertify' => true,
                     ]);
-                } else {
-                    // force form error when no link submitted
-                    $form->addError(new FormError('This value should not be blank.'));
                 }
+                // force form error when no link submitted
+                $form->addError(new FormError('This value should not be blank.'));
             } else {
                 $this->warn($this->get('translator')->trans('victoire.404.form.error.unvalid'));
             }
@@ -240,6 +239,14 @@ class RedirectionController extends Controller
     }
 
     /**
+     * @return string
+     */
+    protected function getBaseTemplatePath()
+    {
+        return 'VictoireSeoBundle:Redirection';
+    }
+
+    /**
      * @param Redirection $redirection
      * @param string      $containerId
      *
@@ -263,13 +270,5 @@ class RedirectionController extends Controller
                 'v-ic-target'  => 'closest li',
             ],
         ]);
-    }
-
-    /**
-     * @return string
-     */
-    protected function getBaseTemplatePath()
-    {
-        return 'VictoireSeoBundle:Redirection';
     }
 }

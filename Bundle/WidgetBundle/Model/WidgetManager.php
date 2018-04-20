@@ -114,6 +114,9 @@ class WidgetManager
      * @param string $slot
      * @param View   $view
      * @param int    $position
+     * @param mixed  $mode
+     * @param mixed  $parentWidgetMap
+     * @param mixed  $quantum
      *
      * @return array
      */
@@ -156,6 +159,9 @@ class WidgetManager
      * @param View   $view
      * @param string $entity
      * @param string $type
+     * @param mixed  $position
+     * @param mixed  $widgetReference
+     * @param mixed  $quantum
      *
      * @throws \Exception
      *
@@ -230,9 +236,11 @@ class WidgetManager
     /**
      * Edit a widget.
      *
-     * @param Widget $widget
-     * @param View   $currentView
-     * @param string $businessEntityId The entity name is used to know which form to submit
+     * @param Widget     $widget
+     * @param View       $currentView
+     * @param string     $businessEntityId The entity name is used to know which form to submit
+     * @param null|mixed $quantum
+     * @param mixed      $widgetMode
      *
      * @return template
      */
@@ -392,8 +400,6 @@ class WidgetManager
      *
      * @param Widget $widget
      * @param View   $view
-     *
-     * @return void
      */
     public function deleteWidget(Widget $widget, View $view)
     {

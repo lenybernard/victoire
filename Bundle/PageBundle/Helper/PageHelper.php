@@ -197,36 +197,35 @@ class PageHelper
             }
 
             return $this->renderPage($page, $layout);
-        } else {
-            try {
-                /** @var Error404 $error404 */
-                $error404 = $this->entityManager->getRepository('VictoireSeoBundle:Error404')->findOneBy(['url' => $uri]);
-                /** @var Redirection $redirection */
-                $redirection = $this->entityManager->getRepository('VictoireSeoBundle:Redirection')->findOneBy(['url' => $uri]);
+        }
+        try {
+            /** @var Error404 $error404 */
+            $error404 = $this->entityManager->getRepository('VictoireSeoBundle:Error404')->findOneBy(['url' => $uri]);
+            /** @var Redirection $redirection */
+            $redirection = $this->entityManager->getRepository('VictoireSeoBundle:Redirection')->findOneBy(['url' => $uri]);
 
-                $result = $this->redirectionHandler->handleError($redirection, $error404);
+            $result = $this->redirectionHandler->handleError($redirection, $error404);
 
-                if ($result instanceof Redirection) {
-                    return new RedirectResponse($this->container->get('victoire_widget.twig.link_extension')->victoireLinkUrl(
+            if ($result instanceof Redirection) {
+                return new RedirectResponse($this->container->get('victoire_widget.twig.link_extension')->victoireLinkUrl(
                         $result->getLink()->getParameters()
                     ));
-                } elseif ($result->getRedirection()) {
-                    return new RedirectResponse($this->container->get('victoire_widget.twig.link_extension')->victoireLinkUrl(
+            } elseif ($result->getRedirection()) {
+                return new RedirectResponse($this->container->get('victoire_widget.twig.link_extension')->victoireLinkUrl(
                         $result->getRedirection()->getLink()->getParameters()
                     ));
-                }
-            } catch (NoResultException $e) {
-                $error = new Error404();
-
-                $error->setUrl($uri);
-                $error->setType($this->redirectionHandler->handleErrorExtension(pathinfo($uri, PATHINFO_EXTENSION)));
-
-                $this->entityManager->persist($error);
-                $this->entityManager->flush();
             }
+        } catch (NoResultException $e) {
+            $error = new Error404();
 
-            throw new NotFoundHttpException(sprintf('Page not found (url: "%s", locale: "%s")', $url, $locale));
+            $error->setUrl($uri);
+            $error->setType($this->redirectionHandler->handleErrorExtension(pathinfo($uri, PATHINFO_EXTENSION)));
+
+            $this->entityManager->persist($error);
+            $this->entityManager->flush();
         }
+
+        throw new NotFoundHttpException(sprintf('Page not found (url: "%s", locale: "%s")', $url, $locale));
     }
 
     /**
@@ -302,24 +301,11 @@ class PageHelper
     }
 
     /**
-     * @param BusinessPageReference $viewReference
-     *
-     * @return BusinessPage
-     *                      read the cache to find entity according tu given url
-     * @return object|null
-     */
-    protected function findEntityByReference(ViewReference $viewReference)
-    {
-        if ($viewReference instanceof BusinessPageReference && !empty($viewReference->getEntityId())) {
-            return $this->entityManager->getRepository($viewReference->getEntityNamespace())
-                ->findOneById($viewReference->getEntityId());
-        }
-    }
-
-    /**
      * find the page according to given url.
      *
      * @return View
+     *
+     * @param mixed $viewReference
      */
     public function findPageByReference($viewReference)
     {
@@ -456,6 +442,42 @@ class PageHelper
     }
 
     /**
+     * Set Page position.
+     *
+     * @param BasePage $page
+     *
+     * @return BasePage $page
+     */
+    public function setPosition(BasePage $page)
+    {
+        if ($page->getParent()) {
+            $pageNb = count($page->getParent()->getChildren());
+        } else {
+            $pageNb = count($this->entityManager->getRepository('VictoirePageBundle:BasePage')->findByParent(null));
+        }
+
+        // + 1 because position start at 1, not 0
+        $page->setPosition($pageNb + 1);
+
+        return $page;
+    }
+
+    /**
+     * @param BusinessPageReference $viewReference
+     *
+     * @return BusinessPage
+     *                      read the cache to find entity according tu given url
+     * @return object|null
+     */
+    protected function findEntityByReference(ViewReference $viewReference)
+    {
+        if ($viewReference instanceof BusinessPageReference && !empty($viewReference->getEntityId())) {
+            return $this->entityManager->getRepository($viewReference->getEntityNamespace())
+                ->findOneById($viewReference->getEntityId());
+        }
+    }
+
+    /**
      * Guess which layout to use for a given View.
      *
      * @param View $view
@@ -503,26 +525,5 @@ class PageHelper
         if ($roles) {
             return array_unique(explode(',', $roles));
         }
-    }
-
-    /**
-     * Set Page position.
-     *
-     * @param BasePage $page
-     *
-     * @return BasePage $page
-     */
-    public function setPosition(BasePage $page)
-    {
-        if ($page->getParent()) {
-            $pageNb = count($page->getParent()->getChildren());
-        } else {
-            $pageNb = count($this->entityManager->getRepository('VictoirePageBundle:BasePage')->findByParent(null));
-        }
-
-        // + 1 because position start at 1, not 0
-        $page->setPosition($pageNb + 1);
-
-        return $page;
     }
 }

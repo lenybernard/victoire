@@ -29,8 +29,6 @@ class VictoirePageExtension extends Extension implements PrependExtensionInterfa
 
     /**
      * @param ContainerBuilder $container
-     *
-     * @return void
      */
     public function prepend(ContainerBuilder $container)
     {

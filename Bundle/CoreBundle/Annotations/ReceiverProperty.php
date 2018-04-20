@@ -16,6 +16,7 @@ class ReceiverProperty
      * define supported types.
      *
      * @param array $types supported types (text, media, date)
+     * @param mixed $data
      **/
     public function __construct($data)
     {

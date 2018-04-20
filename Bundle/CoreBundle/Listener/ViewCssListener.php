@@ -40,7 +40,6 @@ class ViewCssListener
         if ($currentView instanceof VirtualBusinessPage) {
             $currentView->setCssHash($currentView->getTemplate()->getCssHash());
         } elseif (!$currentView->getCssHash() || !$currentView->isCssUpToDate()) {
-
             //CSS file will be regenerated during WidgetSubscriber onFlush event
             $currentView->changeCssHash();
             $this->entityManager->persist($currentView);

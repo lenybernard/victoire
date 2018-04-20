@@ -21,6 +21,7 @@ class ViewReferenceTransformerChain
      *
      * @param DataTransformerInterface $viewManager
      * @param string                   $viewNamespace
+     * @param mixed                    $outputFormat
      */
     public function addTransformer(DataTransformerInterface $transformer, $viewNamespace, $outputFormat)
     {

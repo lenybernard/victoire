@@ -171,19 +171,6 @@ class RemoteVideoHandler extends AbstractMediaHandler
     }
 
     /**
-     * String helper.
-     *
-     * @param string $str string
-     * @param string $sub substring
-     *
-     * @return bool
-     */
-    private function endsWith($str, $sub)
-    {
-        return substr($str, strlen($str) - strlen($sub)) === $sub;
-    }
-
-    /**
      * @param Media $media
      */
     public function saveMedia(Media $media)
@@ -303,5 +290,18 @@ class RemoteVideoHandler extends AbstractMediaHandler
                 'type' => self::TYPE,
                 'name' => 'media.video.add', ],
         ];
+    }
+
+    /**
+     * String helper.
+     *
+     * @param string $str string
+     * @param string $sub substring
+     *
+     * @return bool
+     */
+    private function endsWith($str, $sub)
+    {
+        return substr($str, strlen($str) - strlen($sub)) === $sub;
     }
 }

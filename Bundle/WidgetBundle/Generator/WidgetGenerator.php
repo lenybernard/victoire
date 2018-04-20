@@ -38,8 +38,18 @@ class WidgetGenerator extends Generator
     /**
      * build WidgetBundle files.
      *
-     * @param string $namespace
-     * @param string $format
+     * @param string     $namespace
+     * @param string     $format
+     * @param mixed      $bundle
+     * @param mixed      $dir
+     * @param mixed      $structure
+     * @param null|mixed $fields
+     * @param null|mixed $parent
+     * @param null|mixed $packagistParentName
+     * @param mixed      $contentResolver
+     * @param mixed      $parentContentResolver
+     * @param null|mixed $orgname
+     * @param mixed      $cache
      */
     public function generate($namespace, $bundle, $dir, $format, $structure, $fields = null, $parent = null, $packagistParentName = null, $contentResolver = false, $parentContentResolver = false, $orgname = null, $cache = false)
     {
@@ -119,7 +129,21 @@ class WidgetGenerator extends Generator
     }
 
     /**
+     * configure available skeletons twig files.
+     *
+     * @param mixed $skeletonDirs
+     */
+    public function setSkeletonDirs($skeletonDirs)
+    {
+        parent::setSkeletonDirs($skeletonDirs);
+        $this->skeletonDirs = $skeletonDirs;
+    }
+
+    /**
      * write WidgetBundle files.
+     *
+     * @param mixed $template
+     * @param mixed $parameters
      */
     protected function render($template, $parameters)
     {
@@ -127,14 +151,5 @@ class WidgetGenerator extends Generator
         $twig->setLoader(new \Twig_Loader_Filesystem($this->skeletonDirs));
 
         return $twig->render($template, $parameters);
-    }
-
-    /**
-     * configure available skeletons twig files.
-     */
-    public function setSkeletonDirs($skeletonDirs)
-    {
-        parent::setSkeletonDirs($skeletonDirs);
-        $this->skeletonDirs = $skeletonDirs;
     }
 }

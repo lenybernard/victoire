@@ -34,9 +34,9 @@ class Cache
     /**
      * Fetches an entry from the cache.
      *
-     * @param string $id cache id The id of the cache entry to fetch.
+     * @param string $id cache id The id of the cache entry to fetch
      *
-     * @return mixed The cached data or FALSE, if no cache entry exists for the given id.
+     * @return mixed the cached data or FALSE, if no cache entry exists for the given id
      */
     public function fetch($id)
     {
@@ -51,10 +51,10 @@ class Cache
     /**
      * Puts data into the cache.
      *
-     * @param string $id   The cache id.
-     * @param mixed  $data The cache entry/data.
+     * @param string $id   the cache id
+     * @param mixed  $data the cache entry/data
      *
-     * @return bool TRUE if the entry was successfully stored in the cache, FALSE otherwise.
+     * @return bool TRUE if the entry was successfully stored in the cache, FALSE otherwise
      */
     public function save($id, $data)
     {

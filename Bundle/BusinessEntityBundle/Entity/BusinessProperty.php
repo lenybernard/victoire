@@ -8,6 +8,32 @@ class BusinessProperty
     protected $entityProperty = null;
 
     /**
+     * Display object as string.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->entityProperty;
+    }
+
+    /**
+     * setState (convert from array to object).
+     *
+     * @return string
+     *
+     * @param mixed $array
+     */
+    public static function __set_state($array)
+    {
+        $businessPropery = new self();
+        $businessPropery->setType($array['type']);
+        $businessPropery->setEntityProperty($array['entityProperty']);
+
+        return $businessPropery;
+    }
+
+    /**
      * Set the type.
      *
      * @param string $type
@@ -43,29 +69,5 @@ class BusinessProperty
     public function setEntityProperty($property)
     {
         $this->entityProperty = $property;
-    }
-
-    /**
-     * Display object as string.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->entityProperty;
-    }
-
-    /**
-     * setState (convert from array to object).
-     *
-     * @return string
-     */
-    public static function __set_state($array)
-    {
-        $businessPropery = new self();
-        $businessPropery->setType($array['type']);
-        $businessPropery->setEntityProperty($array['entityProperty']);
-
-        return $businessPropery;
     }
 }

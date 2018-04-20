@@ -38,7 +38,8 @@ class PageSeo
     /**
      * Set redirectTo w/ proxy.
      *
-     * @param View $redirectTo
+     * @param View       $redirectTo
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -63,7 +64,8 @@ class PageSeo
     /**
      * Set metaTitle w/ proxy.
      *
-     * @param string $metaTitle
+     * @param string     $metaTitle
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -88,7 +90,8 @@ class PageSeo
     /**
      * Set metaDescription w/ proxy.
      *
-     * @param string $metaDescription
+     * @param string     $metaDescription
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -113,7 +116,8 @@ class PageSeo
     /**
      * Set relAuthor w/ proxy.
      *
-     * @param string $relAuthor
+     * @param string     $relAuthor
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -138,7 +142,8 @@ class PageSeo
     /**
      * Set relPublisher w/ proxy.
      *
-     * @param string $relPublisher
+     * @param string     $relPublisher
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -163,7 +168,8 @@ class PageSeo
     /**
      * Set ogTitle w/ proxy.
      *
-     * @param string $ogTitle
+     * @param string     $ogTitle
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -188,7 +194,8 @@ class PageSeo
     /**
      * Set ogType w/ proxy.
      *
-     * @param string $ogType
+     * @param string     $ogType
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -213,7 +220,8 @@ class PageSeo
     /**
      * Set ogImage w/ proxy.
      *
-     * @param Image $ogImage
+     * @param Image      $ogImage
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -238,7 +246,8 @@ class PageSeo
     /**
      * Set ogUrl w/ proxy.
      *
-     * @param string $ogUrl
+     * @param string     $ogUrl
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -263,7 +272,8 @@ class PageSeo
     /**
      * Set ogDescription w/ proxy.
      *
-     * @param string $ogDescription
+     * @param string     $ogDescription
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -288,7 +298,8 @@ class PageSeo
     /**
      * Set fbAdmins w/ proxy.
      *
-     * @param string $fbAdmins
+     * @param string     $fbAdmins
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -313,7 +324,8 @@ class PageSeo
     /**
      * Set twitterCard w/ proxy.
      *
-     * @param string $twitterCard
+     * @param string     $twitterCard
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -338,7 +350,8 @@ class PageSeo
     /**
      * Set twitterUrl w/ proxy.
      *
-     * @param string $twitterUrl
+     * @param string     $twitterUrl
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -363,7 +376,8 @@ class PageSeo
     /**
      * Set twitterCreator w/ proxy.
      *
-     * @param string $twitterCreator
+     * @param string     $twitterCreator
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -388,7 +402,8 @@ class PageSeo
     /**
      * Set twitterTitle w/ proxy.
      *
-     * @param string $twitterTitle
+     * @param string     $twitterTitle
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -413,7 +428,8 @@ class PageSeo
     /**
      * Set twitterDescription w/ proxy.
      *
-     * @param string $twitterDescription
+     * @param string     $twitterDescription
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -438,7 +454,8 @@ class PageSeo
     /**
      * Set twitterImage w/ proxy.
      *
-     * @param Image $twitterImage
+     * @param Image      $twitterImage
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -463,7 +480,8 @@ class PageSeo
     /**
      * Set schemaPageType w/ proxy.
      *
-     * @param string $schemaPageType
+     * @param string     $schemaPageType
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -488,7 +506,8 @@ class PageSeo
     /**
      * Set schemaName w/ proxy.
      *
-     * @param string $schemaName
+     * @param string     $schemaName
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -513,7 +532,8 @@ class PageSeo
     /**
      * Set schemaDescription w/ proxy.
      *
-     * @param string $schemaDescription
+     * @param string     $schemaDescription
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -538,7 +558,8 @@ class PageSeo
     /**
      * Set schemaImage w/ proxy.
      *
-     * @param Image $schemaImage
+     * @param Image      $schemaImage
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -563,7 +584,8 @@ class PageSeo
     /**
      * Set metaRobotsIndex w/ proxy.
      *
-     * @param string $metaRobotsIndex
+     * @param string     $metaRobotsIndex
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -588,7 +610,8 @@ class PageSeo
     /**
      * Set metaRobotsFollow w/ proxy.
      *
-     * @param string $metaRobotsFollow
+     * @param string     $metaRobotsFollow
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -613,7 +636,8 @@ class PageSeo
     /**
      * Set metaRobotsAdvanced w/ proxy.
      *
-     * @param string $metaRobotsAdvanced
+     * @param string     $metaRobotsAdvanced
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -638,7 +662,8 @@ class PageSeo
     /**
      * Set sitemapIndexed w/ proxy.
      *
-     * @param bool $sitemapIndexed
+     * @param bool       $sitemapIndexed
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -663,7 +688,8 @@ class PageSeo
     /**
      * Set sitemapPriority w/ proxy.
      *
-     * @param float $sitemapPriority
+     * @param float      $sitemapPriority
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -688,7 +714,8 @@ class PageSeo
     /**
      * Set sitemapChangeFreq w/ proxy.
      *
-     * @param float $sitemapChangeFreq
+     * @param float      $sitemapChangeFreq
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */
@@ -713,7 +740,8 @@ class PageSeo
     /**
      * Set relCanonical w/ proxy.
      *
-     * @param string $relCanonical
+     * @param string     $relCanonical
+     * @param null|mixed $locale
      *
      * @return PageSeo
      */

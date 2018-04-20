@@ -95,6 +95,29 @@ class WidgetType extends AbstractType
     }
 
     /**
+     * bind form to WidgetRedactor entity.
+     *
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class'         => 'Victoire\Bundle\WidgetBundle\Entity\Widget',
+            'translation_domain' => 'victoire',
+            'mode'               => Widget::MODE_STATIC,
+        ]);
+
+        $resolver->setDefined([
+            'widget',
+            'slot',
+            'namespace',
+            'businessEntityId',
+            'dataSources',
+            'quantum',
+        ]);
+    }
+
+    /**
      * Add the criterias fields.
      *
      * @param FormBuilderInterface $builder
@@ -187,29 +210,6 @@ class WidgetType extends AbstractType
             'label'     => 'widget.form.entity.fields.label',
             'namespace' => $options['namespace'],
             'widget'    => $options['widget'],
-        ]);
-    }
-
-    /**
-     * bind form to WidgetRedactor entity.
-     *
-     * @param OptionsResolver $resolver
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class'         => 'Victoire\Bundle\WidgetBundle\Entity\Widget',
-            'translation_domain' => 'victoire',
-            'mode'               => Widget::MODE_STATIC,
-        ]);
-
-        $resolver->setDefined([
-            'widget',
-            'slot',
-            'namespace',
-            'businessEntityId',
-            'dataSources',
-            'quantum',
         ]);
     }
 }

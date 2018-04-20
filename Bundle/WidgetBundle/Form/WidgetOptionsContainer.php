@@ -37,6 +37,8 @@ class WidgetOptionsContainer
 
     /**
      * @param array $options
+     * @param mixed $key
+     * @param mixed $value
      */
     public function add($key, $value)
     {

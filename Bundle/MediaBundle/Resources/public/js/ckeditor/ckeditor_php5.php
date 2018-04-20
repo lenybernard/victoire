@@ -96,7 +96,7 @@ class CKEditor
     /**
      * Main Constructor.
      *
-     *  @param $basePath (string) URL to the %CKEditor installation directory (optional).
+     *  @param $basePath (string) URL to the %CKEditor installation directory (optional)
      */
     public function __construct($basePath = null)
     {
@@ -109,9 +109,9 @@ class CKEditor
      * Creates a %CKEditor instance.
      * In incompatible browsers %CKEditor will downgrade to plain HTML &lt;textarea&gt; element.
      *
-     * @param $name (string) Name of the %CKEditor instance (this will be also the "name" attribute of textarea element).
-     * @param $value (string) Initial value (optional).
-     * @param $config (array) The specific configurations to apply to this editor instance (optional).
+     * @param $name (string) Name of the %CKEditor instance (this will be also the "name" attribute of textarea element)
+     * @param $value (string) Initial value (optional)
+     * @param $config (array) The specific configurations to apply to this editor instance (optional)
      * @param $events (array) Event listeners for this editor instance (optional).
      *
      * Example usage:
@@ -167,8 +167,8 @@ class CKEditor
     /**
      * Replaces a &lt;textarea&gt; with a %CKEditor instance.
      *
-     * @param $id (string) The id or name of textarea element.
-     * @param $config (array) The specific configurations to apply to this editor instance (optional).
+     * @param $id (string) The id or name of textarea element
+     * @param $config (array) The specific configurations to apply to this editor instance (optional)
      * @param $events (array) Event listeners for this editor instance (optional).
      *
      * Example 1: adding %CKEditor to &lt;textarea name="article"&gt;&lt;/textarea&gt; element:
@@ -261,7 +261,7 @@ class CKEditor
      * Adds event listener.
      * Events are fired by %CKEditor in various situations.
      *
-     * @param $event (string) Event name.
+     * @param $event (string) Event name
      * @param $javascriptCode (string) Javascript anonymous function or function name.
      *
      * Example usage:
@@ -286,7 +286,7 @@ class CKEditor
      * Clear registered event handlers.
      * Note: this function will have no effect on already created editor instances.
      *
-     * @param $event (string) Event name, if not set all event handlers will be removed (optional).
+     * @param $event (string) Event name, if not set all event handlers will be removed (optional)
      */
     public function clearEventHandlers($event = null)
     {
@@ -300,7 +300,7 @@ class CKEditor
     /**
      * Adds global event listener.
      *
-     * @param $event (string) Event name.
+     * @param $event (string) Event name
      * @param $javascriptCode (string) Javascript anonymous function or function name.
      *
      * Example usage:
@@ -325,7 +325,7 @@ class CKEditor
      * Clear registered global event handlers.
      * Note: this function will have no effect if the event handler has been already printed/returned.
      *
-     * @param $event (string) Event name, if not set all event handlers will be removed (optional).
+     * @param $event (string) Event name, if not set all event handlers will be removed (optional)
      */
     public function clearGlobalEventHandlers($event = null)
     {
@@ -355,8 +355,8 @@ class CKEditor
     /**
      * Returns the configuration array (global and instance specific settings are merged into one array).
      *
-     * @param $config (array) The specific configurations to apply to editor instance.
-     * @param $events (array) Event listeners for editor instance.
+     * @param $config (array) The specific configurations to apply to editor instance
+     * @param $events (array) Event listeners for editor instance
      */
     private function configSettings($config = [], $events = [])
     {

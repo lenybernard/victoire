@@ -14,6 +14,13 @@ use Victoire\Bundle\WidgetBundle\Entity\Widget;
 class Criteria
 {
     /**
+     * @var Widget
+     *
+     * @ORM\ManyToOne(targetEntity="\Victoire\Bundle\WidgetBundle\Entity\Widget", inversedBy="criterias")
+     * @ORM\JoinColumn(name="widget_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    protected $widget;
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -42,14 +49,6 @@ class Criteria
      * @ORM\Column(name="value", type="string", length=255)
      */
     private $value;
-
-    /**
-     * @var Widget
-     *
-     * @ORM\ManyToOne(targetEntity="\Victoire\Bundle\WidgetBundle\Entity\Widget", inversedBy="criterias")
-     * @ORM\JoinColumn(name="widget_id", referencedColumnName="id", onDelete="CASCADE")
-     */
-    protected $widget;
 
     /**
      * Get id.

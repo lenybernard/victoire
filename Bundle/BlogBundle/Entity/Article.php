@@ -26,17 +26,22 @@ class Article
     use Translatable;
 
     /**
+     * @ORM\Column(name="status", type="string", nullable=false)
+     */
+    protected $status;
+
+    /**
+     * @Gedmo\Locale
+     */
+    protected $locale;
+
+    /**
      * @VIC\BusinessProperty("businessParameter")
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @ORM\Column(name="status", type="string", nullable=false)
-     */
-    protected $status;
 
     /**
      * Categories of the article.
@@ -119,9 +124,12 @@ class Article
     private $promoted = false;
 
     /**
-     * @Gedmo\Locale
+     * Constructor.
      */
-    protected $locale;
+    public function __construct()
+    {
+        $this->status = PageStatus::DRAFT;
+    }
 
     /**
      * to string method.
@@ -131,14 +139,6 @@ class Article
     public function __toString()
     {
         return $this->getName();
-    }
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        $this->status = PageStatus::DRAFT;
     }
 
     /**
@@ -387,9 +387,9 @@ class Article
 
         if ($this->publishedAt) {
             return $this->publishedAtString = strftime('%d %B %Y', $this->publishedAt->getTimestamp());
-        } else {
-            return '';
         }
+
+        return '';
     }
 
     /**

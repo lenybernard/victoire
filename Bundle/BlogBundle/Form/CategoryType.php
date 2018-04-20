@@ -87,6 +87,19 @@ class CategoryType extends AbstractType
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        parent::configureOptions($resolver);
+
+        $resolver->setDefaults([
+            'data_class'         => 'Victoire\Bundle\BlogBundle\Entity\BlogCategory',
+            'translation_domain' => 'victoire',
+        ]);
+    }
+
+    /**
      * Add the items field to the form.
      *
      * @param Form $form
@@ -105,19 +118,5 @@ class CategoryType extends AbstractType
                 'by_reference' => false,
             ]
         );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        parent::configureOptions($resolver);
-
-        $resolver->setDefaults([
-            'data_class'         => 'Victoire\Bundle\BlogBundle\Entity\BlogCategory',
-            'translation_domain' => 'victoire',
-
-        ]);
     }
 }

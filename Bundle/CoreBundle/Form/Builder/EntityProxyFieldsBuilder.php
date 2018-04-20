@@ -45,10 +45,8 @@ class EntityProxyFieldsBuilder
             foreach ($receiverPropertiesTypes as $type => $receiverProperties) {
                 /* @var ReceiverProperty[] $receiverProperties */
                 foreach ($receiverProperties as $receiverProperty) {
-
                     //Check if entity has all the required receiver properties as business properties
                     if (isset($businessProperties[$type]) && is_array($businessProperties[$type]) && count($businessProperties[$type])) {
-
                         //Create form types with field as key and values as choices
                         //TODO Add some formatter Class or a buildField method responsible to create this type
                         $label = $this->translator->trans(

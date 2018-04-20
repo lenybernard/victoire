@@ -141,9 +141,9 @@ trait WebViewTrait
             $this->getPublishedAt() < new \DateTime())
             ) {
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     /**

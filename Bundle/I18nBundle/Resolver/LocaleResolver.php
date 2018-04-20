@@ -14,10 +14,10 @@ class LocaleResolver
     const PATTERN_DOMAIN = 'domain';
 
     public $localePattern;
-    protected $localeDomainConfig;
-    protected $availableLocales;
     public $defaultLocale;
     public $defaultDomain;
+    protected $localeDomainConfig;
+    protected $availableLocales;
 
     /**
      * Constructor.
@@ -93,6 +93,8 @@ class LocaleResolver
      * @return string
      *
      * This method resolves the domain from locale
+     *
+     * @param mixed $locale
      */
     public function resolveDomainForLocale($locale)
     {

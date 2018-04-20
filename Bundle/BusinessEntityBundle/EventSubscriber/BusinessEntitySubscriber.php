@@ -236,32 +236,6 @@ class BusinessEntitySubscriber implements EventSubscriber
     }
 
     /**
-     * This method throw an event if needed for a view related to a businessEntity.
-     *
-     * @param LifecycleEventArgs $eventArgs
-     *
-     * @throws \Exception
-     */
-    private function updateViewReference(LifecycleEventArgs $eventArgs)
-    {
-        $entity = $eventArgs->getEntity();
-
-        //if entity is a translation, get its translatable entity
-        if (in_array(Translation::class, class_uses($entity)) && null !== $entity->getTranslatable()) {
-            $entity = $entity->getTranslatable();
-        }
-
-        //if it's a businessEntity we need to rebuild virtuals (BPs are rebuild in businessEntitySubscriber)
-        if ($businessEntity = $this->businessEntityHelper->findByEntityInstance($entity)) {
-            $this->flushedBusinessEntities->add($entity);
-        }
-        //if it a businessTemplate we have to rebuild virtuals or update BP
-        if ($entity instanceof BusinessTemplate) {
-            $this->flushedBusinessTemplates->add($entity);
-        }
-    }
-
-    /**
      * @param LifecycleEventArgs $eventArgs
      *
      * @throws \Exception
@@ -293,7 +267,6 @@ class BusinessEntitySubscriber implements EventSubscriber
             $em = $eventArgs->getEntityManager();
             $businessTemplates = $em->getRepository('VictoireBusinessPageBundle:BusinessTemplate')->findPagePatternByBusinessEntity($businessEntity);
             foreach ($businessTemplates as $businessTemplate) {
-
                 // Generate a viewReference for each BT translation
                 foreach ($businessTemplate->getTranslations() as $translation) {
                     $businessTemplate->setCurrentLocale($translation->getLocale());
@@ -330,6 +303,32 @@ class BusinessEntitySubscriber implements EventSubscriber
                     $this->dispatcher->dispatch(ViewReferenceEvents::REMOVE_VIEW_REFERENCE, $event);
                 }
             }
+        }
+    }
+
+    /**
+     * This method throw an event if needed for a view related to a businessEntity.
+     *
+     * @param LifecycleEventArgs $eventArgs
+     *
+     * @throws \Exception
+     */
+    private function updateViewReference(LifecycleEventArgs $eventArgs)
+    {
+        $entity = $eventArgs->getEntity();
+
+        //if entity is a translation, get its translatable entity
+        if (in_array(Translation::class, class_uses($entity)) && null !== $entity->getTranslatable()) {
+            $entity = $entity->getTranslatable();
+        }
+
+        //if it's a businessEntity we need to rebuild virtuals (BPs are rebuild in businessEntitySubscriber)
+        if ($businessEntity = $this->businessEntityHelper->findByEntityInstance($entity)) {
+            $this->flushedBusinessEntities->add($entity);
+        }
+        //if it a businessTemplate we have to rebuild virtuals or update BP
+        if ($entity instanceof BusinessTemplate) {
+            $this->flushedBusinessTemplates->add($entity);
         }
     }
 }

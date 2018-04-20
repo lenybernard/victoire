@@ -49,29 +49,21 @@ abstract class AbstractMediaHandler
 
     /**
      * @param Media $media
-     *
-     * @return void
      */
     abstract public function prepareMedia(Media $media);
 
     /**
      * @param Media $media
-     *
-     * @return void
      */
     abstract public function saveMedia(Media $media);
 
     /**
      * @param Media $media
-     *
-     * @return void
      */
     abstract public function updateMedia(Media $media);
 
     /**
      * @param Media $media
-     *
-     * @return void
      */
     abstract public function removeMedia(Media $media);
 

@@ -12,7 +12,8 @@ class ErrorPageRepository extends BasePageRepository
     /**
      * Get a page according to the given code.
      *
-     * @param int $code The error code
+     * @param int   $code     The error code
+     * @param mixed $deepMode
      *
      * @return Page
      */

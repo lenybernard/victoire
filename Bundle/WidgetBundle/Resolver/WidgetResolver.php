@@ -55,7 +55,6 @@ class WidgetResolver
         }
         /* @var Widget $widget */
         foreach ($widgets as $_widget) {
-
             /** @var Criteria $criteria */
             foreach ($_widget->getCriterias() as $criteria) {
                 $value = $this->dataSourceChain->getData($criteria->getName());

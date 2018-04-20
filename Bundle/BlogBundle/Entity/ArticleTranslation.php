@@ -121,6 +121,7 @@ class ArticleTranslation
      * Set category.
      *
      * @param string $category
+     * @param mixed  $description
      *
      * @return Article
      */

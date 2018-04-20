@@ -24,6 +24,8 @@ use Victoire\Bundle\MediaBundle\Repository\FolderRepository;
  */
 class MediaCreatorService
 {
+    const CONTEXT_CONSOLE = 'console';
+    const CONTEXT_WEB = 'web';
     /** @var EntityManager */
     protected $em;
     /** @var FolderRepository */
@@ -38,13 +40,10 @@ class MediaCreatorService
         $this->folderRepository = $em->getRepository('VictoireMediaBundle:Folder');
     }
 
-    const CONTEXT_CONSOLE = 'console';
-    const CONTEXT_WEB = 'web';
-
     /**
      * @param $filePath string  The full filepath of the asset you want to upload. The filetype will be automatically detected.
-     * @param $folderId integer For now you still have to manually pass the correct folder ID.
-     * @param string $context This is needed because the Filesystem basepath differs between web & console application env.
+     * @param $folderId integer For now you still have to manually pass the correct folder ID
+     * @param string $context this is needed because the Filesystem basepath differs between web & console application env
      *
      * @return Media
      */

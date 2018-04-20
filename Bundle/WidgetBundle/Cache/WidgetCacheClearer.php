@@ -30,6 +30,7 @@ class WidgetCacheClearer implements CacheClearerInterface
 
     /**
      * @param Widget $widget
+     * @param mixed  $cacheDir
      *
      * @return string
      */

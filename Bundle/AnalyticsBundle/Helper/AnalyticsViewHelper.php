@@ -35,6 +35,9 @@ class AnalyticsViewHelper
      * Get the most read views by type.
      *
      * @return View[]
+     *
+     * @param mixed $viewNamespace
+     * @param mixed $number
      **/
     public function getMostReadByViewType($viewNamespace, $number)
     {
@@ -68,7 +71,6 @@ class AnalyticsViewHelper
                 }
 
                 break;
-
             default:
                 // code...
                 break;
@@ -81,6 +83,10 @@ class AnalyticsViewHelper
      * Get the most read articles by blog.
      *
      * @return Article[]
+     *
+     * @param mixed $blog
+     * @param mixed $number
+     * @param mixed $excludeUnpublished
      **/
     public function getMostReadArticlesByBlog($blog, $number, $excludeUnpublished = true)
     {

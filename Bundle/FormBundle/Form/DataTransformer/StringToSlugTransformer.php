@@ -9,6 +9,8 @@ class StringToSlugTransformer implements DataTransformerInterface
 {
     /**
      * Transforms a string to a slug .
+     *
+     * @param mixed $string
      */
     public function transform($string)
     {
@@ -17,6 +19,8 @@ class StringToSlugTransformer implements DataTransformerInterface
 
     /**
      * Transforms a url to a string.
+     *
+     * @param mixed $slug
      */
     public function reverseTransform($slug)
     {

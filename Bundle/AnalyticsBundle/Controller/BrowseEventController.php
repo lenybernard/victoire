@@ -16,6 +16,9 @@ class BrowseEventController extends Controller
 {
     /**
      * @Route("/track/{viewReferenceId}/{referer}", name="victoire_analytics_track")
+     *
+     * @param mixed      $viewReferenceId
+     * @param null|mixed $referer
      */
     public function trackAction(Request $request, $viewReferenceId, $referer = null)
     {
@@ -35,6 +38,8 @@ class BrowseEventController extends Controller
 
     /**
      * @Route("/heartbeat/{id}", name="victoire_analytics_heartbeat")
+     *
+     * @param mixed $id
      */
     public function heartbeatAction($id)
     {

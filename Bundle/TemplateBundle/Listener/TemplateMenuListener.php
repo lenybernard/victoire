@@ -76,11 +76,11 @@ class TemplateMenuListener implements MenuListenerInterface
     {
         if ($menuTemplate = $this->menuBuilder->getTopNavbar()->getChild('menu.template')) {
             return $menuTemplate;
-        } else {
-            return $this->menuBuilder->createDropdownMenuItem(
+        }
+
+        return $this->menuBuilder->createDropdownMenuItem(
                 $this->menuBuilder->getTopNavbar(),
                 'menu.template'
             );
-        }
     }
 }

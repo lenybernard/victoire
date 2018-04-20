@@ -135,10 +135,14 @@ class WidgetController extends Controller
      * This action needs 2 routes to handle the presence or not of "businessEntityId" and 'parentWidgetMap'
      * that are both integers but "businessEntityId" present only in !static mode.
      *
-     * @param string $type             The type of the widget we edit
-     * @param int    $viewReference    The view reference where attach the widget
-     * @param string $slot             The slot where attach the widget
-     * @param string $businessEntityId The BusinessEntity::id (can be null if the submitted form is in static mode)
+     * @param string     $type             The type of the widget we edit
+     * @param int        $viewReference    The view reference where attach the widget
+     * @param string     $slot             The slot where attach the widget
+     * @param string     $businessEntityId The BusinessEntity::id (can be null if the submitted form is in static mode)
+     * @param mixed      $mode
+     * @param null|mixed $position
+     * @param null|mixed $parentWidgetMap
+     * @param null|mixed $quantum
      *
      * @throws Exception
      *
@@ -188,9 +192,11 @@ class WidgetController extends Controller
     /**
      * Edit a widget.
      *
-     * @param Widget $widget           The widget to edit
-     * @param int    $viewReference    The current view
-     * @param string $businessEntityId The BusinessEntity::id (can be null if the submitted form is in static mode)
+     * @param Widget     $widget           The widget to edit
+     * @param int        $viewReference    The current view
+     * @param string     $businessEntityId The BusinessEntity::id (can be null if the submitted form is in static mode)
+     * @param mixed      $mode
+     * @param null|mixed $quantum
      *
      * @throws Exception
      *
@@ -468,20 +474,19 @@ class WidgetController extends Controller
 
         if ($isDebugAllowed) {
             throw $ex;
-        } else {
-            //translate the message
-            $translator = $this->get('translator');
+        }
+        //translate the message
+        $translator = $this->get('translator');
 
-            //get the translated message
-            $message = $translator->trans('error_occured', [], 'victoire');
+        //get the translated message
+        $message = $translator->trans('error_occured', [], 'victoire');
 
-            $response = new JsonResponse(
+        $response = new JsonResponse(
                 [
                     'success' => false,
                     'message' => $message,
                 ]
             );
-        }
 
         return $response;
     }

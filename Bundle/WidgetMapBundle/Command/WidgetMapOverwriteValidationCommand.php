@@ -80,7 +80,7 @@ class WidgetMapOverwriteValidationCommand extends ContainerAwareCommand
                     }
 
                     if (count($matchingChildren) > 1) {
-                        $conflictNb++;
+                        ++$conflictNb;
                         $table->addRow([
                             $view->getId(),
                             implode(', ', $matchingChildren),

@@ -215,6 +215,14 @@ class ArticleController extends Controller
     }
 
     /**
+     * @return string
+     */
+    protected function getBaseTemplatePath()
+    {
+        return 'VictoireBlogBundle:Article';
+    }
+
+    /**
      * Get JsonResponse array for Settings novalidate and form display.
      *
      * @param FormInterface $form
@@ -250,13 +258,5 @@ class ArticleController extends Controller
                 'page'               => $page,
             ]),
         ];
-    }
-
-    /**
-     * @return string
-     */
-    protected function getBaseTemplatePath()
-    {
-        return 'VictoireBlogBundle:Article';
     }
 }

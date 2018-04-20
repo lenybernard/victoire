@@ -154,6 +154,8 @@ class BusinessEntity
      * Get the business properties.
      *
      * @return array The business properties
+     *
+     * @param mixed $businessProperties
      */
     public function setBusinessProperties($businessProperties)
     {

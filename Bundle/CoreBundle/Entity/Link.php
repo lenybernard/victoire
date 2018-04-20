@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
  */
 class Link
 {
+    use \Gedmo\Timestampable\Traits\TimestampableEntity;
     const TYPE_NONE = 'none';
     const TYPE_VIEW_REFERENCE = 'viewReference';
     const TYPE_ROUTE = 'route';
@@ -24,8 +25,6 @@ class Link
     const TARGET_PARENT = '_parent';
     const TARGET_BLANK = '_blank';
     const TARGET_MODAL = '_modal';
-
-    use \Gedmo\Timestampable\Traits\TimestampableEntity;
 
     /**
      * @var int

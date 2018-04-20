@@ -14,6 +14,21 @@ class CurrentViewHelper
     protected $updatedCurrentView;
 
     /**
+     * This method allow you to get the current view using a Current View Helper as a method
+     * ex.
+     * $currentViewHelper = $this->get('victoire_core.current_view');
+     * $currentView = $currentViewHelper();.
+     *
+     * @return View The current View
+     */
+    public function __invoke()
+    {
+        if ($this->currentView) {
+            return $this->currentView;
+        }
+    }
+
+    /**
      * Get currentView.
      *
      * @return View
@@ -48,20 +63,5 @@ class CurrentViewHelper
         $this->updatedCurrentView = $currentView;
 
         return $this;
-    }
-
-    /**
-     * This method allow you to get the current view using a Current View Helper as a method
-     * ex.
-     * $currentViewHelper = $this->get('victoire_core.current_view');
-     * $currentView = $currentViewHelper();.
-     *
-     * @return View The current View
-     */
-    public function __invoke()
-    {
-        if ($this->currentView) {
-            return $this->currentView;
-        }
     }
 }

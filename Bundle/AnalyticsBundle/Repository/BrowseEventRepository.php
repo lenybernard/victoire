@@ -14,6 +14,8 @@ class BrowseEventRepository extends \Doctrine\ORM\EntityRepository
      * return a qb ordered by visits number descending for some viewReferences[].
      *
      * @return QueryBuilder
+     *
+     * @param mixed $maxNumber
      **/
     public function getMostVisitedFromReferences(array $referencesIds, $maxNumber = 10)
     {
@@ -30,6 +32,8 @@ class BrowseEventRepository extends \Doctrine\ORM\EntityRepository
      * return a qb for number of results for a viewReferenceId group by ip.
      *
      * @return QueryBuilder
+     *
+     * @param mixed $referencesId
      **/
     public function getNumberOfEventForViewReferenceId($referencesId)
     {

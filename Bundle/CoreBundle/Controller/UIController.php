@@ -16,7 +16,7 @@ class UIController extends Controller
     /**
      * Confirm modal.
      *
-     * @param Request $request An HTTP request.
+     * @param Request $request an HTTP request
      *
      * @Route("/confirm", name="victoire_core_ui_confirm", options={"expose"=true})
      *

@@ -11,8 +11,21 @@ class ReceiverProperty
     protected $required = false;
 
     /**
-     * @return null
+     * setState (convert from array to object).
+     *
+     * @return string
+     *
+     * @param mixed $array
      */
+    public static function __set_state($array)
+    {
+        $receiverProperty = new self();
+        $receiverProperty->setFieldName($array['fieldName']);
+        $receiverProperty->setRequired($array['required']);
+
+        return $receiverProperty;
+    }
+
     public function getFieldName()
     {
         return $this->fieldName;
@@ -40,19 +53,5 @@ class ReceiverProperty
     public function setRequired($required)
     {
         $this->required = $required;
-    }
-
-    /**
-     * setState (convert from array to object).
-     *
-     * @return string
-     */
-    public static function __set_state($array)
-    {
-        $receiverProperty = new self();
-        $receiverProperty->setFieldName($array['fieldName']);
-        $receiverProperty->setRequired($array['required']);
-
-        return $receiverProperty;
     }
 }

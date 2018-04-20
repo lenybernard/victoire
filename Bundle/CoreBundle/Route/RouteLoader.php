@@ -29,6 +29,11 @@ class RouteLoader extends Loader
         return $collection;
     }
 
+    public function supports($resource, $type = null)
+    {
+        return $type === 'victoire';
+    }
+
     protected function addVictoireRouting(RouteCollection &$collection)
     {
         $resources = [
@@ -124,10 +129,5 @@ class RouteLoader extends Loader
 
         // add the new route to the route collection:
         $collection->add('victoire_core_homepage_show', $route);
-    }
-
-    public function supports($resource, $type = null)
-    {
-        return $type === 'victoire';
     }
 }

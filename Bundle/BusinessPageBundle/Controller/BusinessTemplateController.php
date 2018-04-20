@@ -136,34 +136,6 @@ class BusinessTemplateController extends Controller
     }
 
     /**
-     * Creates a form to create a BusinessTemplate entity.
-     *
-     * @param BusinessTemplate $view The entity
-     *
-     * @throws \Exception
-     *
-     * @return \Symfony\Component\Form\Form The form
-     * @return Form
-     */
-    private function createCreateForm(BusinessTemplate $view)
-    {
-        $id = $view->getBusinessEntityId();
-
-        $businessProperties = $this->getBusinessProperties($view);
-        $form = $this->createForm(
-            BusinessTemplateType::class,
-            $view,
-            [
-                'action'                  => $this->generateUrl('victoire_business_template_create', ['id' => $id]),
-                'method'                  => 'POST',
-                'vic_business_properties' => $businessProperties,
-            ]
-        );
-
-        return $form;
-    }
-
-    /**
      * Displays a form to create a new BusinessTemplate entity.
      *
      * @param string $id The id of the businessEntity
@@ -229,28 +201,6 @@ class BusinessTemplateController extends Controller
             ),
             'success' => true,
         ]);
-    }
-
-    /**
-     * Creates a form to edit a BusinessTemplate entity.
-     *
-     * @param BusinessTemplate $view The entity
-     *
-     * @throws \Exception
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createEditForm(BusinessTemplate $view)
-    {
-        $businessProperties = $this->getBusinessProperties($view);
-
-        $form = $this->createForm(BusinessTemplateType::class, $view, [
-            'action'                  => $this->generateUrl('victoire_business_template_update', ['id' => $view->getId()]),
-            'method'                  => 'PUT',
-            'vic_business_properties' => $businessProperties,
-        ]);
-
-        return $form;
     }
 
     /**
@@ -335,22 +285,6 @@ class BusinessTemplateController extends Controller
     }
 
     /**
-     * Creates a form to delete a BusinessTemplate entity by id.
-     *
-     * @param string $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm($id)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('victoire_business_template_delete', ['id' => $id]))
-            ->setMethod('DELETE')
-            ->add('submit', SubmitType::class, ['label' => 'Delete'])
-            ->getForm();
-    }
-
-    /**
      * List the entities that matches the query of the BusinessTemplate.
      *
      * @param BusinessTemplate $view
@@ -372,6 +306,72 @@ class BusinessTemplateController extends Controller
             'BusinessTemplate' => $view,
             'items'            => $bepHelper->getEntitiesAllowed($view, $this->get('doctrine.orm.entity_manager')),
         ]);
+    }
+
+    /**
+     * Creates a form to create a BusinessTemplate entity.
+     *
+     * @param BusinessTemplate $view The entity
+     *
+     * @throws \Exception
+     *
+     * @return \Symfony\Component\Form\Form The form
+     * @return Form
+     */
+    private function createCreateForm(BusinessTemplate $view)
+    {
+        $id = $view->getBusinessEntityId();
+
+        $businessProperties = $this->getBusinessProperties($view);
+        $form = $this->createForm(
+            BusinessTemplateType::class,
+            $view,
+            [
+                'action'                  => $this->generateUrl('victoire_business_template_create', ['id' => $id]),
+                'method'                  => 'POST',
+                'vic_business_properties' => $businessProperties,
+            ]
+        );
+
+        return $form;
+    }
+
+    /**
+     * Creates a form to edit a BusinessTemplate entity.
+     *
+     * @param BusinessTemplate $view The entity
+     *
+     * @throws \Exception
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createEditForm(BusinessTemplate $view)
+    {
+        $businessProperties = $this->getBusinessProperties($view);
+
+        $form = $this->createForm(BusinessTemplateType::class, $view, [
+            'action'                  => $this->generateUrl('victoire_business_template_update', ['id' => $view->getId()]),
+            'method'                  => 'PUT',
+            'vic_business_properties' => $businessProperties,
+        ]);
+
+        return $form;
+    }
+
+    /**
+     * Creates a form to delete a BusinessTemplate entity by id.
+     *
+     * @param string $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('victoire_business_template_delete', ['id' => $id]))
+            ->setMethod('DELETE')
+            ->add('submit', SubmitType::class, ['label' => 'Delete'])
+            ->getForm();
     }
 
     /**

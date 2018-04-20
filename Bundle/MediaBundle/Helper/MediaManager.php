@@ -18,8 +18,6 @@ class MediaManager
 
     /**
      * @param AbstractMediaHandler $handler Media handler
-     *
-     * @return void
      */
     public function addHandler(AbstractMediaHandler $handler)
     {

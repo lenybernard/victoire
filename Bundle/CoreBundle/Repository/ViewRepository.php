@@ -66,7 +66,7 @@ class ViewRepository extends NestedTreeRepository
      *
      * @param ViewReference[] $viewReferences
      *
-     * @return View[]|null The entity instance or NULL if the entities cannot be found.
+     * @return View[]|null the entity instance or NULL if the entities cannot be found
      */
     public function findByViewReferences(array $viewReferences)
     {

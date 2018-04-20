@@ -57,7 +57,8 @@ class ViewReferenceHelper
     }
 
     /**
-     * @param [] $tree
+     * @param []    $tree
+     * @param mixed $isRoot
      */
     public function buildViewReferenceRecursively($tree, EntityManager $entityManager, $isRoot = true)
     {

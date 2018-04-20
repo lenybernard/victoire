@@ -27,12 +27,6 @@ class Widget extends BaseWidget implements VictoireQueryInterface
     use QueryTrait;
     use TimestampableEntity;
 
-    public function __construct()
-    {
-        $this->childrenSlot = uniqid();
-        $this->criterias = new ArrayCollection();
-    }
-
     /**
      * @var int
      *
@@ -124,6 +118,42 @@ class Widget extends BaseWidget implements VictoireQueryInterface
      */
     protected $quantum;
 
+    public function __construct()
+    {
+        $this->childrenSlot = uniqid();
+        $this->criterias = new ArrayCollection();
+    }
+
+    /**
+     * to string.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return (string) $this->getId();
+    }
+
+    /**
+     * Clone a widget.
+     */
+    public function __clone()
+    {
+        // if there is a proxy
+        if ($this->entityProxy) {
+            // we clone this one
+            $this->entityProxy = clone $this->entityProxy;
+        }
+
+        // This check should be in the __constructor, but Doctrine does not use __constructor to
+        // instanciate entites but __clone method.
+        if (property_exists(get_called_class(), 'widget')) {
+            throw new \Exception(sprintf('A property $widget was found in %s object.
+                The $widget property is reserved for Victoire.
+                You should chose a different property name.', get_called_class()));
+        }
+    }
+
     /**
      * @return string
      */
@@ -158,16 +188,6 @@ class Widget extends BaseWidget implements VictoireQueryInterface
     public function getEntityProxy()
     {
         return $this->entityProxy;
-    }
-
-    /**
-     * to string.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return (string) $this->getId();
     }
 
     /**
@@ -275,18 +295,6 @@ class Widget extends BaseWidget implements VictoireQueryInterface
     public function getType()
     {
         return $this->guessType();
-    }
-
-    /**
-     * Guess the type of this by exploding and getting the last item.
-     *
-     * @return string The guessed type
-     */
-    protected function guessType()
-    {
-        $type = explode('\\', get_class($this));
-
-        return strtolower(preg_replace('/Widget/', '', end($type)));
     }
 
     /**
@@ -400,26 +408,6 @@ class Widget extends BaseWidget implements VictoireQueryInterface
         }
 
         return $this->entity;
-    }
-
-    /**
-     * Clone a widget.
-     */
-    public function __clone()
-    {
-        // if there is a proxy
-        if ($this->entityProxy) {
-            // we clone this one
-            $this->entityProxy = clone $this->entityProxy;
-        }
-
-        // This check should be in the __constructor, but Doctrine does not use __constructor to
-        // instanciate entites but __clone method.
-        if (property_exists(get_called_class(), 'widget')) {
-            throw new \Exception(sprintf('A property $widget was found in %s object.
-                The $widget property is reserved for Victoire.
-                You should chose a different property name.', get_called_class()));
-        }
     }
 
     /**
@@ -540,5 +528,17 @@ class Widget extends BaseWidget implements VictoireQueryInterface
     public function setView($view)
     {
         $this->view = $view;
+    }
+
+    /**
+     * Guess the type of this by exploding and getting the last item.
+     *
+     * @return string The guessed type
+     */
+    protected function guessType()
+    {
+        $type = explode('\\', get_class($this));
+
+        return strtolower(preg_replace('/Widget/', '', end($type)));
     }
 }

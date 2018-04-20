@@ -36,6 +36,16 @@ class FileHelper
     }
 
     /**
+     * __destruct.
+     */
+    public function __destruct()
+    {
+        if ($this->path != null) {
+            unlink($this->path);
+        }
+    }
+
+    /**
      * @return string
      */
     public function getName()
@@ -110,16 +120,6 @@ class FileHelper
             unlink($path);
 
             throw new AccessDeniedException('Can not link file');
-        }
-    }
-
-    /**
-     * __destruct.
-     */
-    public function __destruct()
-    {
-        if ($this->path != null) {
-            unlink($this->path);
         }
     }
 }

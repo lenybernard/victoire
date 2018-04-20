@@ -107,16 +107,16 @@ class WidgetMap
      */
     protected $slot;
 
-    public function __toString()
-    {
-        return (string) $this->id;
-    }
-
     public function __construct()
     {
         $this->children = new ArrayCollection();
         $this->substitutes = new ArrayCollection();
         $this->widgets = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return (string) $this->id;
     }
 
     /**
@@ -286,6 +286,8 @@ class WidgetMap
 
     /**
      * @return WidgetMap|null
+     *
+     * @param mixed $position
      */
     public function getChild($position)
     {
@@ -304,6 +306,8 @@ class WidgetMap
      * for a given position.
      *
      * @return WidgetMap[]
+     *
+     * @param mixed $position
      */
     public function getContextualChildren($position)
     {

@@ -33,7 +33,9 @@ class BlogController extends BasePageController
      * @Route("/index/{blogId}/{tab}", name="victoire_blog_index", defaults={"blogId" = null, "tab" = "articles"})
      * @ParamConverter("blog", class="VictoireBlogBundle:Blog", options={"id" = "blogId"})
      *
-     * @param Request $request
+     * @param Request    $request
+     * @param null|mixed $blog
+     * @param mixed      $tab
      *
      * @throws \OutOfBoundsException
      *
@@ -128,6 +130,8 @@ class BlogController extends BasePageController
      * @Method("GET")
      *
      * @return JsonResponse
+     *
+     * @param mixed $isHomepage
      */
     public function newAction(Request $request, $isHomepage = false)
     {
@@ -248,8 +252,9 @@ class BlogController extends BasePageController
     /**
      * List Blog articles.
      *
-     * @param Request  $request
-     * @param BasePage $blog
+     * @param Request    $request
+     * @param BasePage   $blog
+     * @param null|mixed $articleLocale
      *
      * @Route("/{id}/articles/{articleLocale}", name="victoire_blog_articles")
      * @ParamConverter("blog", class="VictoirePageBundle:BasePage")

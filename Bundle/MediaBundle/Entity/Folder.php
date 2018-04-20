@@ -112,6 +112,14 @@ class Folder
     }
 
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
      * Get id.
      *
      * @return int
@@ -407,14 +415,6 @@ class Folder
     public function getInternalName()
     {
         return $this->internalName;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getName();
     }
 
     /**

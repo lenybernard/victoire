@@ -61,8 +61,7 @@ class WidgetContentResolverChain
     {
         if (array_key_exists($alias, $this->resolvers)) {
             return $this->resolvers[$alias];
-        } else {
-            throw new \InvalidArgumentException(sprintf('The "%s" resolver does not exist', $alias));
         }
+        throw new \InvalidArgumentException(sprintf('The "%s" resolver does not exist', $alias));
     }
 }

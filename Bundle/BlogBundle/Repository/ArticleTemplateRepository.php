@@ -14,6 +14,7 @@ class ArticleTemplateRepository extends EntityRepository
 
     /**
      * @param $blog_id
+     * @param mixed $alias
      *
      * @return \Doctrine\ORM\QueryBuilder
      */

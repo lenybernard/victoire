@@ -16,10 +16,9 @@ use Victoire\Bundle\CoreBundle\Entity\View;
  */
 class PageSeoTranslation
 {
+    use Translation;
     const SITEMAP_INDEXED_DEFAULT = true;
     const SITEMAP_PRIORITY_DEFAULT = 0.5;
-
-    use Translation;
 
     /**
      * @var string

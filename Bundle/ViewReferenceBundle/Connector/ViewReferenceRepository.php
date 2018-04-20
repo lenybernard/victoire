@@ -78,6 +78,7 @@ class ViewReferenceRepository
      * @param $parameters
      * @param bool|true  $transform
      * @param bool|false $keepChildren
+     * @param null|mixed $type
      *
      * @return array
      */
@@ -155,7 +156,7 @@ class ViewReferenceRepository
 
         $decoratorFn = function ($depth, $char0 = '└', $char = '─') {
             $decorator = $char0;
-            for ($i = 0; $i <= $depth; $i++) {
+            for ($i = 0; $i <= $depth; ++$i) {
                 $decorator .= $char;
             }
 

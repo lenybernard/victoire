@@ -59,14 +59,6 @@ class BlogCategory
     protected $articles;
 
     /**
-     * blog of the category.
-     *
-     * @ORM\ManyToOne(targetEntity="Blog", inversedBy="categories")
-     * @ORM\JoinColumn(name="blog_id", referencedColumnName="id", onDelete="cascade")
-     */
-    private $blog;
-
-    /**
      * @Gedmo\TreeLeft
      * @ORM\Column(name="lft", type="integer")
      */
@@ -102,6 +94,14 @@ class BlogCategory
      * @ORM\OrderBy({"lft" = "ASC"})
      */
     protected $children;
+
+    /**
+     * blog of the category.
+     *
+     * @ORM\ManyToOne(targetEntity="Blog", inversedBy="categories")
+     * @ORM\JoinColumn(name="blog_id", referencedColumnName="id", onDelete="cascade")
+     */
+    private $blog;
 
     /**
      * Constructor.

@@ -44,7 +44,7 @@ class BulkUploadType extends AbstractType
     /**
      * Configures the options for this type.
      *
-     * @param OptionsResolver $resolver The resolver for the options.
+     * @param OptionsResolver $resolver the resolver for the options
      */
     public function configureOptions(OptionsResolver $resolver)
     {

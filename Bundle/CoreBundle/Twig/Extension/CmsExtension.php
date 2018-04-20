@@ -90,14 +90,14 @@ class CmsExtension extends \Twig_Extension
         return [
             new \Twig_SimpleFilter('hash', [$this, 'hash']),
             new \Twig_SimpleFilter('date', [$this, 'twigVicDateFormatFilter']),
-
         ];
     }
 
     /**
      * render unlink action for a widgetId.
      *
-     * @param int $widgetId The widgetId to unlink
+     * @param int   $widgetId The widgetId to unlink
+     * @param mixed $view
      *
      * @return string the widget unlink action
      */
@@ -218,6 +218,7 @@ class CmsExtension extends \Twig_Extension
      * <pre>
      *   {{ post.published_at|date("m/d/Y") }}
      * </pre>
+     * @param mixed $value
      *
      * @return string The formatted date
      */

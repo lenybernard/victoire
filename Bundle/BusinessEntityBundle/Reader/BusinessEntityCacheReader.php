@@ -104,30 +104,6 @@ class BusinessEntityCacheReader
     }
 
     /**
-     * Fetch in Cache system and try to reparse Annotation if no results.
-     *
-     * @param $key
-     *
-     * @throws \Doctrine\ORM\Mapping\MappingException
-     *
-     * @return mixed
-     */
-    protected function fetch($key)
-    {
-        $results = $this->cache->get($key, null);
-
-        if (!$results) {
-            //Reparse all entities to find some @VIC Annotation
-            foreach ($this->driver->getAllClassNames() as $className) {
-                $this->driver->parse(new \ReflectionClass($className));
-            }
-            $results = $this->cache->get($key, []);
-        }
-
-        return $results;
-    }
-
-    /**
      * Get a business entity by its id.
      *
      * @param string $id
@@ -159,5 +135,29 @@ class BusinessEntityCacheReader
         }
 
         return $businessEntity;
+    }
+
+    /**
+     * Fetch in Cache system and try to reparse Annotation if no results.
+     *
+     * @param $key
+     *
+     * @throws \Doctrine\ORM\Mapping\MappingException
+     *
+     * @return mixed
+     */
+    protected function fetch($key)
+    {
+        $results = $this->cache->get($key, null);
+
+        if (!$results) {
+            //Reparse all entities to find some @VIC Annotation
+            foreach ($this->driver->getAllClassNames() as $className) {
+                $this->driver->parse(new \ReflectionClass($className));
+            }
+            $results = $this->cache->get($key, []);
+        }
+
+        return $results;
     }
 }

@@ -154,7 +154,42 @@ class WidgetStyleType extends AbstractType
     }
 
     /**
-     * @param string $responsiveKey
+     * bind form to WidgetRedactor entity.
+     *
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class'         => 'Victoire\Bundle\WidgetBundle\Entity\Widget',
+            'translation_domain' => 'victoire',
+        ]);
+    }
+
+    /**
+     * Get the bundle name from an Entity namespace.
+     *
+     * @param string $entityNamespace
+     * @param mixed  $bundles
+     *
+     * @return string
+     *
+     * @author lenybernard
+     **/
+    protected static function getBundleNameFromEntity($entityNamespace, $bundles)
+    {
+        $dataBaseNamespace = substr($entityNamespace, 0, strpos($entityNamespace, '\\Entity\\'));
+        foreach ($bundles as $type => $bundle) {
+            $bundleRefClass = new \ReflectionClass($bundle);
+            if ($bundleRefClass->getNamespaceName() === $dataBaseNamespace) {
+                return $type;
+            }
+        }
+    }
+
+    /**
+     * @param string     $responsiveKey
+     * @param null|mixed $type
      */
     private function generateBackgroundFields(FormInterface $form, $responsiveKey, $type = null)
     {
@@ -212,39 +247,6 @@ class WidgetStyleType extends AbstractType
                     'label' => 'widget_layout.form.containerBackgroundColor'.$responsiveKey.'.label',
                     'attr'  => ['placeholder' => 'widget_layout.form.containerBackgroundColor.placeholder'],
                 ]);
-        }
-    }
-
-    /**
-     * bind form to WidgetRedactor entity.
-     *
-     * @param OptionsResolver $resolver
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class'         => 'Victoire\Bundle\WidgetBundle\Entity\Widget',
-            'translation_domain' => 'victoire',
-        ]);
-    }
-
-    /**
-     * Get the bundle name from an Entity namespace.
-     *
-     * @param string $entityNamespace
-     *
-     * @return string
-     *
-     * @author lenybernard
-     **/
-    protected static function getBundleNameFromEntity($entityNamespace, $bundles)
-    {
-        $dataBaseNamespace = substr($entityNamespace, 0, strpos($entityNamespace, '\\Entity\\'));
-        foreach ($bundles as $type => $bundle) {
-            $bundleRefClass = new \ReflectionClass($bundle);
-            if ($bundleRefClass->getNamespaceName() === $dataBaseNamespace) {
-                return $type;
-            }
         }
     }
 }

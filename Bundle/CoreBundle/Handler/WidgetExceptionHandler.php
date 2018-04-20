@@ -46,7 +46,6 @@ class WidgetExceptionHandler
 
         $result = '';
 
-        //
         if ($this->debug) {
             $exceptionResult = '<div style="border: 3px solid #FF0000;height: 500px;overflow: auto;">';
 

@@ -159,7 +159,6 @@ class QueryHelper
 
         // If the current page is a BEP, we parse all its properties and inject them as query parameters
         if ($currentView() && $currentView() instanceof BusinessPage && null !== $currentEntity = $currentView()->getBusinessEntity()) {
-
             // NEW
             $metadatas = $em->getClassMetadata(get_class($currentEntity));
             foreach ($metadatas->fieldMappings as $fieldName => $field) {
@@ -188,6 +187,14 @@ class QueryHelper
     }
 
     /**
+     * @return UserInterface|string
+     */
+    public function getCurrentUser()
+    {
+        return $this->tokenStorage->getToken()->getUser();
+    }
+
+    /**
      * Check if field is a OneToOne, OneToMany, ManyToOne or ManyToMany association.
      *
      * @param \ReflectionProperty $field
@@ -204,13 +211,5 @@ class QueryHelper
         }
 
         return false;
-    }
-
-    /**
-     * @return UserInterface|string
-     */
-    public function getCurrentUser()
-    {
-        return $this->tokenStorage->getToken()->getUser();
     }
 }

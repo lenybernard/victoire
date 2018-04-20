@@ -135,9 +135,9 @@ class WidgetHelper
             if ($widgetParams['class'] === ClassUtils::getClass($widget)) {
                 if (array_key_exists('cache', $widgetParams)) {
                     return $widgetParams['cache'];
-                } else {
-                    return true;
                 }
+
+                return true;
             }
         }
 
@@ -158,9 +158,9 @@ class WidgetHelper
             if ($widgetParams['class'] === ClassUtils::getClass($widget)) {
                 if (array_key_exists('cache_timout', $widgetParams)) {
                     return $widgetParams['cache_timout'];
-                } else {
-                    return 7 * 24 * 60 * 1000; // one week by default
                 }
+
+                return 7 * 24 * 60 * 1000; // one week by default
             }
         }
 

@@ -101,13 +101,12 @@ class BlogMenuListener implements MenuListenerInterface
         //if not exists, create it and return it
         if ($menuPage = $this->menuBuilder->getTopNavbar()->getChild(('menu.blog'))) {
             return $menuPage;
-        } else {
-            //else, find it and return it
-            return $this->menuBuilder->createDropdownMenuItem(
+        }
+        //else, find it and return it
+        return $this->menuBuilder->createDropdownMenuItem(
                 $this->menuBuilder->getTopNavbar(),
                 'menu.blog',
                 ['attributes' => ['class' => 'vic-pull-left vic-text-left']]
             );
-        }
     }
 }

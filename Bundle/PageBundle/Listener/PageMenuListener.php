@@ -89,11 +89,11 @@ class PageMenuListener implements MenuListenerInterface
 
         if ($menuPage) {
             return $menuPage;
-        } else {
-            return $this->menuBuilder->createDropdownMenuItem(
+        }
+
+        return $this->menuBuilder->createDropdownMenuItem(
                 $this->menuBuilder->getTopNavbar(),
                 'menu.page'
             );
-        }
     }
 }

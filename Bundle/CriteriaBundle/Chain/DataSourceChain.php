@@ -17,6 +17,7 @@ class DataSourceChain
     /**
      * @param $dataSource
      * @param $alias
+     * @param mixed $parameters
      */
     public function addDataSource($dataSource, $parameters)
     {

@@ -29,18 +29,6 @@ abstract class Widget
     }
 
     /**
-     * Guess the type of this by exploding and getting the last item.
-     *
-     * @return string The guessed type
-     */
-    protected function guessType()
-    {
-        $type = explode('\\', get_class($this));
-
-        return strtolower(preg_replace('/Widget/', '', end($type)));
-    }
-
-    /**
      * Set the current view.
      *
      * @param \Victoire\Bundle\CoreBundle\Entity\View $currentView
@@ -62,5 +50,17 @@ abstract class Widget
     public function getCurrentView()
     {
         return $this->currentView ? $this->currentView : $this->getWidgetMap()->getView();
+    }
+
+    /**
+     * Guess the type of this by exploding and getting the last item.
+     *
+     * @return string The guessed type
+     */
+    protected function guessType()
+    {
+        $type = explode('\\', get_class($this));
+
+        return strtolower(preg_replace('/Widget/', '', end($type)));
     }
 }

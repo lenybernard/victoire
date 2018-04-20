@@ -50,8 +50,6 @@ class FetchAssetsCommand extends ContainerAwareCommand
     /**
      * @param InputInterface  $input
      * @param OutputInterface $output
-     *
-     * @return void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -76,8 +74,6 @@ class FetchAssetsCommand extends ContainerAwareCommand
 
         try {
             $bowerProcess->mustRun();
-
-            echo $bowerProcess->getOutput();
         } catch (ProcessFailedException $e) {
             $output->writeln(sprintf('<error>%s</error>', 'Did you installed bower properly ?'));
             $output->writeln(sprintf('<error>%s</error>', $e->getMessage()));
@@ -97,8 +93,6 @@ class FetchAssetsCommand extends ContainerAwareCommand
 
         try {
             $npmProcess->mustRun();
-
-            echo $npmProcess->getOutput();
         } catch (ProcessFailedException $e) {
             $output->writeln(sprintf('<error>%s</error>', 'Did you installed npm or yarn properly ?'));
             $output->writeln(sprintf('<error>%s</error>', $e->getMessage()));

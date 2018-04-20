@@ -29,11 +29,12 @@ class WidgetFormBuilder
     /**
      * create form new for a widget.
      *
-     * @param Form   $form
-     * @param Widget $widget
-     * @param string $slot
-     * @param View   $view
-     * @param string $entity
+     * @param Form       $form
+     * @param Widget     $widget
+     * @param string     $slot
+     * @param View       $view
+     * @param string     $entity
+     * @param null|mixed $quantum
      *
      * @return string
      */
@@ -92,6 +93,7 @@ class WidgetFormBuilder
      * @param int              $position
      * @param null             $parentWidgetMap
      * @param int              $position
+     * @param mixed            $quantum
      *
      * @throws \Exception
      *
@@ -129,6 +131,9 @@ class WidgetFormBuilder
      * @param Widget           $widget
      * @param BusinessEntity[] $classes
      * @param int              $position
+     * @param mixed            $widgets
+     * @param null|mixed       $parentWidgetMap
+     * @param null|mixed       $quantum
      *
      * @throws \Exception
      *
@@ -171,43 +176,17 @@ class WidgetFormBuilder
     }
 
     /**
-     * @param Widget $widget
-     * @param View   $view
-     * @param string $businessEntityId
-     * @param string $namespace
-     * @param int    $position
-     * @param string $slot
-     *
-     * @return array
-     */
-    protected function buildEntityForms($widget, View $view, $businessEntityId = null, $namespace = null, $position = null, $parentWidgetMap = null, $slot = null, $quantum = null)
-    {
-        $forms = [];
-
-        //get the entity form
-        $entityForm = $this->buildForm($widget, $view, $businessEntityId, $namespace, Widget::MODE_ENTITY, $slot, $position, $parentWidgetMap, $quantum);
-        $forms[Widget::MODE_ENTITY] = $entityForm;
-
-        //get the query form
-        $queryForm = $this->buildForm($widget, $view, $businessEntityId, $namespace, Widget::MODE_QUERY, $slot, $position, $parentWidgetMap, $quantum);
-        $forms[Widget::MODE_QUERY] = $queryForm;
-
-        //get the query form
-        $businessEntityForm = $this->buildForm($widget, $view, $businessEntityId, $namespace, Widget::MODE_BUSINESS_ENTITY, $slot, $position, $parentWidgetMap, $quantum);
-        $forms[Widget::MODE_BUSINESS_ENTITY] = $businessEntityForm;
-
-        return $forms;
-    }
-
-    /**
      * create a form with given widget.
      *
-     * @param Widget $widget
-     * @param View   $view
-     * @param string $businessEntityId
-     * @param string $namespace
-     * @param string $formMode
-     * @param int    $position
+     * @param Widget     $widget
+     * @param View       $view
+     * @param string     $businessEntityId
+     * @param string     $namespace
+     * @param string     $formMode
+     * @param int        $position
+     * @param null|mixed $parentWidgetMap
+     * @param null|mixed $slotId
+     * @param null|mixed $quantum
      *
      * @throws \Exception
      *
@@ -349,6 +328,7 @@ class WidgetFormBuilder
      *
      * @param        $number
      * @param string $letter
+     * @param mixed  $i
      *
      * @return string
      */
@@ -359,8 +339,8 @@ class WidgetFormBuilder
         }
 
         while ($i < $number) {
-            $i++;
-            $letter++;
+            ++$i;
+            ++$letter;
         }
 
         return $letter;
@@ -369,12 +349,15 @@ class WidgetFormBuilder
     /**
      * create a form with given widget.
      *
-     * @param Widget $widget           the widget
-     * @param View   $view             the page
-     * @param string $businessEntityId the entity class
-     * @param string $namespace        the namespace
-     * @param string $formMode         the form mode
-     * @param int    $position
+     * @param Widget     $widget           the widget
+     * @param View       $view             the page
+     * @param string     $businessEntityId the entity class
+     * @param string     $namespace        the namespace
+     * @param string     $formMode         the form mode
+     * @param int        $position
+     * @param null|mixed $slotId
+     * @param null|mixed $parentWidgetMap
+     * @param null|mixed $quantum
      *
      * @throws \Exception
      *
@@ -410,6 +393,8 @@ class WidgetFormBuilder
      * @param string $businessEntityId
      * @param int    $position
      * @param string $slotId
+     * @param mixed  $parentWidgetMap
+     * @param mixed  $quantum
      *
      * @throws \Exception
      *
@@ -434,5 +419,36 @@ class WidgetFormBuilder
         $form = $this->buildForm($widget, $view, $businessEntityId, $entityClass, $widget->getMode(), $slotId, $position, $parentWidgetMap, $quantum);
 
         return $form;
+    }
+
+    /**
+     * @param Widget     $widget
+     * @param View       $view
+     * @param string     $businessEntityId
+     * @param string     $namespace
+     * @param int        $position
+     * @param string     $slot
+     * @param null|mixed $parentWidgetMap
+     * @param null|mixed $quantum
+     *
+     * @return array
+     */
+    protected function buildEntityForms($widget, View $view, $businessEntityId = null, $namespace = null, $position = null, $parentWidgetMap = null, $slot = null, $quantum = null)
+    {
+        $forms = [];
+
+        //get the entity form
+        $entityForm = $this->buildForm($widget, $view, $businessEntityId, $namespace, Widget::MODE_ENTITY, $slot, $position, $parentWidgetMap, $quantum);
+        $forms[Widget::MODE_ENTITY] = $entityForm;
+
+        //get the query form
+        $queryForm = $this->buildForm($widget, $view, $businessEntityId, $namespace, Widget::MODE_QUERY, $slot, $position, $parentWidgetMap, $quantum);
+        $forms[Widget::MODE_QUERY] = $queryForm;
+
+        //get the query form
+        $businessEntityForm = $this->buildForm($widget, $view, $businessEntityId, $namespace, Widget::MODE_BUSINESS_ENTITY, $slot, $position, $parentWidgetMap, $quantum);
+        $forms[Widget::MODE_BUSINESS_ENTITY] = $businessEntityForm;
+
+        return $forms;
     }
 }

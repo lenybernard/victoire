@@ -131,35 +131,6 @@ class BusinessEntityHelper
     }
 
     /**
-     * Find a entity by the business entity and the attributeValue.
-     * Must be called by the service victoire_core.helper.queriable_business_entity_helper.
-     *
-     * @param BusinessEntity $businessEntity
-     * @param string         $attributeName
-     * @param string         $attributeValue
-     *
-     * @return Entity
-     */
-    protected function findEntityByBusinessEntityAndAttribute(BusinessEntity $businessEntity, $attributeName, $attributeValue)
-    {
-        if (!$this->entityManager) {
-            throw new \Exception('EntityManager not defined, you should use the "victoire_core.helper.queriable_business_entity_helper" service');
-        }
-        //retrieve the class of the business entity
-        $class = $businessEntity->getClass();
-
-        //get the repository
-        $repo = $this->entityManager->getRepository($class);
-
-        $functionName = 'findOneBy'.ucfirst($attributeName);
-
-        //get the entity
-        $entity = call_user_func([$repo, $functionName], $attributeValue);
-
-        return $entity;
-    }
-
-    /**
      * Get the entity from the page and the id given.
      * Must be called by the service victoire_core.helper.queriable_business_entity_helper.
      *
@@ -254,8 +225,6 @@ class BusinessEntityHelper
      * will save business entity.
      *
      * @param BusinessEntity $businessEntity
-     *
-     * @return void
      **/
     public function saveBusinessEntity(BusinessEntity $businessEntity)
     {
@@ -267,8 +236,6 @@ class BusinessEntityHelper
      *
      * @param string $widgetName
      * @param array  $receiverProperties
-     *
-     * @return void
      **/
     public function saveWidgetReceiverProperties($widgetName, $receiverProperties)
     {
@@ -280,11 +247,38 @@ class BusinessEntityHelper
      *
      * @param string $widgetName
      * @param string $businessEntity
-     *
-     * @return void
      **/
     public function addWidgetBusinessEntity($widgetName, $businessEntity)
     {
         $this->builder->addWidgetBusinessEntity($widgetName, $businessEntity);
+    }
+
+    /**
+     * Find a entity by the business entity and the attributeValue.
+     * Must be called by the service victoire_core.helper.queriable_business_entity_helper.
+     *
+     * @param BusinessEntity $businessEntity
+     * @param string         $attributeName
+     * @param string         $attributeValue
+     *
+     * @return Entity
+     */
+    protected function findEntityByBusinessEntityAndAttribute(BusinessEntity $businessEntity, $attributeName, $attributeValue)
+    {
+        if (!$this->entityManager) {
+            throw new \Exception('EntityManager not defined, you should use the "victoire_core.helper.queriable_business_entity_helper" service');
+        }
+        //retrieve the class of the business entity
+        $class = $businessEntity->getClass();
+
+        //get the repository
+        $repo = $this->entityManager->getRepository($class);
+
+        $functionName = 'findOneBy'.ucfirst($attributeName);
+
+        //get the entity
+        $entity = call_user_func([$repo, $functionName], $attributeValue);
+
+        return $entity;
     }
 }

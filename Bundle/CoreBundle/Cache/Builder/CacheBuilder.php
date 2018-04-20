@@ -30,6 +30,9 @@ class CacheBuilder
 
     /**
      * save Widget.
+     *
+     * @param mixed $widgetName
+     * @param mixed $receiverProperties
      */
     public function saveWidgetReceiverProperties($widgetName, $receiverProperties)
     {
@@ -44,6 +47,9 @@ class CacheBuilder
 
     /**
      * add a BusinessEntity For Widget.
+     *
+     * @param mixed $widgetName
+     * @param mixed $businessEntity
      */
     public function addWidgetBusinessEntity($widgetName, $businessEntity)
     {

@@ -16,8 +16,6 @@ class WidgetFieldsFormType extends AbstractType
 
     /**
      * constructor.
-     *
-     * @return void
      **/
     public function __construct(EntityProxyFieldsBuilder $entityProxyFieldsBuilder)
     {

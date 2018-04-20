@@ -86,6 +86,8 @@ class SitemapTest extends VictoireWebTestCase
 
     /**
      * @return Crawler
+     *
+     * @param mixed $locale
      */
     private function getSitemapPages($locale = 'en')
     {

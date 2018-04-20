@@ -46,7 +46,7 @@ class ViewToIdTransformer implements DataTransformerInterface
      *
      * @param string $id
      *
-     * @throws TransformationFailedException if object (View) is not found.
+     * @throws TransformationFailedException if object (View) is not found
      *
      * @return View|null
      */

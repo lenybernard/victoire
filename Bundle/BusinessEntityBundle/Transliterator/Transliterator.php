@@ -14,6 +14,7 @@ class Transliterator extends BaseTransliterator
      *
      * @param string $text
      * @param string $separator
+     * @param mixed  $excludeTwig
      *
      * @return string
      */

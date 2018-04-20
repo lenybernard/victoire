@@ -47,9 +47,9 @@ class ViewReferenceRedisRepository implements ViewReferenceConnectorRepositoryIn
         // Call the right method for "AND" or "OR"
         if ($type != 'OR') {
             return $this->redis->sinter($filters);
-        } else {
-            return $this->redis->sunion($filters);
         }
+
+        return $this->redis->sunion($filters);
     }
 
     /**

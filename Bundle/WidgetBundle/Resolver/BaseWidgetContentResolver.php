@@ -112,6 +112,22 @@ class BaseWidgetContentResolver
         return $this->queryHelper->buildWithSubQuery($widget, $itemsQueryBuilder, $this->entityManager);
     }
 
+    /**
+     * @param QueryHelper $queryHelper
+     */
+    public function setQueryHelper(QueryHelper $queryHelper)
+    {
+        $this->queryHelper = $queryHelper;
+    }
+
+    /**
+     * @param EntityManager $entityManager
+     */
+    public function setEntityManager(EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     protected function populateParametersWithWidgetFields(Widget $widget, $entity, &$parameters)
     {
         $fields = $widget->getFields();
@@ -128,21 +144,5 @@ class BaseWidgetContentResolver
         }
 
         $widget->setEntity($entity);
-    }
-
-    /**
-     * @param QueryHelper $queryHelper
-     */
-    public function setQueryHelper(QueryHelper $queryHelper)
-    {
-        $this->queryHelper = $queryHelper;
-    }
-
-    /**
-     * @param EntityManager $entityManager
-     */
-    public function setEntityManager(EntityManager $entityManager)
-    {
-        $this->entityManager = $entityManager;
     }
 }

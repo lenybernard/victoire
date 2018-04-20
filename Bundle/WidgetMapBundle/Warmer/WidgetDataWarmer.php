@@ -147,13 +147,10 @@ class WidgetDataWarmer
                 //If Widget has OneToMany association, store owner entity id and mappedBy value
                 //to construct a single query for this entity type
                 elseif ($metaData->isCollectionValuedAssociation($association['fieldName'])) {
-
                     //Even if Widget is cached, we need its Criterias used before cache call
                     if (!$widgetCached || $targetClass === Criteria::class) {
-
                         //If Collection is not null, treat it
                         if ($this->accessor->getValue($entity, $association['fieldName'])) {
-
                             //Don't use Collection getter directly and override Collection
                             //default behaviour to avoid useless query
                             $getter = 'get'.ucwords($association['fieldName']);

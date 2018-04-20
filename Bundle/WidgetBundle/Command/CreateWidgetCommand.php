@@ -66,6 +66,26 @@ EOT
     }
 
     /**
+     * Check that provided widget name is correct.
+     *
+     * @param string $widget
+     *
+     * @return string $widget
+     */
+    public static function validateWidgetName($widget)
+    {
+        if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $widget)) {
+            throw new \InvalidArgumentException('The widget name contains invalid characters.');
+        }
+
+        if (!preg_match('/^([A-Z][a-z]+)+$/', $widget)) {
+            throw new \InvalidArgumentException('The widget name must be PascalCased.');
+        }
+
+        return $widget;
+    }
+
+    /**
      * Take arguments and options defined in $this->interact() and generate a new Widget.
      *
      * @param InputInterface  $input
@@ -204,8 +224,6 @@ EOT
      *
      * @param InputInterface  $input
      * @param OutputInterface $output
-     *
-     * @return void
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
@@ -379,26 +397,6 @@ EOT
     }
 
     /**
-     * Check that provided widget name is correct.
-     *
-     * @param string $widget
-     *
-     * @return string $widget
-     */
-    public static function validateWidgetName($widget)
-    {
-        if (!preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $widget)) {
-            throw new \InvalidArgumentException('The widget name contains invalid characters.');
-        }
-
-        if (!preg_match('/^([A-Z][a-z]+)+$/', $widget)) {
-            throw new \InvalidArgumentException('The widget name must be PascalCased.');
-        }
-
-        return $widget;
-    }
-
-    /**
      * Instanciate a new WidgetGenerator.
      *
      * @return $generator
@@ -419,6 +417,29 @@ EOT
     protected function createEntityGenerator()
     {
         return new DoctrineEntityGenerator($this->getContainer()->get('filesystem'), $this->getContainer()->get('doctrine'));
+    }
+
+    /**
+     * Validate Entity short namepace.
+     *
+     * @param string $shortcut
+     *
+     * @return $shortcut
+     */
+    protected function parseShortcutNotation($shortcut)
+    {
+        $entity = str_replace('/', '\\', $shortcut);
+
+        if (false === $pos = strpos($entity, ':')) {
+            throw new \InvalidArgumentException(sprintf('The entity name must contain a : ("%s" given, expecting something like AcmeBlogBundle:Blog/Post)', $entity));
+        }
+
+        return [substr($entity, 0, $pos), substr($entity, $pos + 1)];
+    }
+
+    protected function isReservedKeyword($keyword)
+    {
+        return in_array($keyword, ['widget']);
     }
 
     /**
@@ -571,28 +592,5 @@ EOT
         }
 
         return $fields;
-    }
-
-    /**
-     * Validate Entity short namepace.
-     *
-     * @param string $shortcut
-     *
-     * @return $shortcut
-     */
-    protected function parseShortcutNotation($shortcut)
-    {
-        $entity = str_replace('/', '\\', $shortcut);
-
-        if (false === $pos = strpos($entity, ':')) {
-            throw new \InvalidArgumentException(sprintf('The entity name must contain a : ("%s" given, expecting something like AcmeBlogBundle:Blog/Post)', $entity));
-        }
-
-        return [substr($entity, 0, $pos), substr($entity, $pos + 1)];
-    }
-
-    protected function isReservedKeyword($keyword)
-    {
-        return in_array($keyword, ['widget']);
     }
 }

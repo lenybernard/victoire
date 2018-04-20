@@ -36,11 +36,14 @@ interface WebViewInterface
 
     /**
      * @param ViewReference[]
+     * @param mixed $references
      */
     public function setReferences($references);
 
     /**
      * @return ViewReference
+     *
+     * @param null|mixed $locale
      */
     public function getReference($locale = null);
 

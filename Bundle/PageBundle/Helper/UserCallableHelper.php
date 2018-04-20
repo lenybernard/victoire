@@ -24,8 +24,6 @@ class UserCallableHelper
 
     /**
      * Get the current user.
-     *
-     * @return null
      */
     public function getCurrentUser()
     {

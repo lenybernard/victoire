@@ -17,7 +17,7 @@ class FormErrorHelper
      * The constructor.
      *
      * @param Translator $translator The translator service
-     * @param booleand   $debug      Is debug mode enabled ? It will be verbose then.
+     * @param booleand   $debug      is debug mode enabled ? It will be verbose then
      */
     public function __construct($translator, $debug)
     {
@@ -30,8 +30,10 @@ class FormErrorHelper
      *
      * This method should only be used in ajax calls.
      *
-     * @param Form $form         The form to parse
-     * @param bool $withChildren Do we parse the embedded forms
+     * @param Form       $form              The form to parse
+     * @param bool       $withChildren      Do we parse the embedded forms
+     * @param null|mixed $translationDomain
+     * @param mixed      $level
      *
      * @return string A string representation of all errors
      */
@@ -71,7 +73,7 @@ class FormErrorHelper
         if ($withChildren) {
             //we parse the children
             foreach ($form->getIterator() as $child) {
-                $level++;
+                ++$level;
                 if ($err = $this->getRecursiveReadableErrors($child, $withChildren, $translationDomain, $level)) {
                     $errors .= $err;
                 }

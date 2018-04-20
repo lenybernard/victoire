@@ -98,6 +98,43 @@ class LinkType extends AbstractType
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class'         => 'Victoire\Bundle\CoreBundle\Entity\Link',
+            'translation_domain' => 'victoire',
+            'horizontal'         => false,
+            'linkTypeChoices'    => $this->getDefaultLinkTypeChoices(),
+            'refresh-target'     => null,
+            'withTarget'         => true,
+        ]);
+    }
+
+    /**
+     * @return array
+     */
+    public static function getDefaultLinkTypeChoices()
+    {
+        return [
+            'form.link_type.linkType.none'           => Link::TYPE_NONE,
+            'form.link_type.linkType.view_reference' => Link::TYPE_VIEW_REFERENCE,
+            'form.link_type.linkType.route'          => Link::TYPE_ROUTE,
+            'form.link_type.linkType.url'            => Link::TYPE_URL,
+            'form.link_type.linkType.widget'         => Link::TYPE_WIDGET,
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars['horizontal'] = $options['horizontal'];
+    }
+
+    /**
      * By default set data-target to root Form.
      *
      * @param FormInterface $form
@@ -223,43 +260,6 @@ class LinkType extends AbstractType
         } else {
             $form->remove('modalLayout');
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class'         => 'Victoire\Bundle\CoreBundle\Entity\Link',
-            'translation_domain' => 'victoire',
-            'horizontal'         => false,
-            'linkTypeChoices'    => $this->getDefaultLinkTypeChoices(),
-            'refresh-target'     => null,
-            'withTarget'         => true,
-        ]);
-    }
-
-    /**
-     * @return array
-     */
-    public static function getDefaultLinkTypeChoices()
-    {
-        return [
-            'form.link_type.linkType.none'           => Link::TYPE_NONE,
-            'form.link_type.linkType.view_reference' => Link::TYPE_VIEW_REFERENCE,
-            'form.link_type.linkType.route'          => Link::TYPE_ROUTE,
-            'form.link_type.linkType.url'            => Link::TYPE_URL,
-            'form.link_type.linkType.widget'         => Link::TYPE_WIDGET,
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
-        $view->vars['horizontal'] = $options['horizontal'];
     }
 
     /**

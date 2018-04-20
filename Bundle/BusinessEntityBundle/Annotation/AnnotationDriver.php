@@ -107,46 +107,6 @@ class AnnotationDriver extends DoctrineAnnotationDriver
     }
 
     /**
-     *  get_declared_classes doesn't list anymore all classes since issue #23014 of Symfony
-     *  I suggest using tokenizer. Faster than including or requiring all the files
-     *  Function recovered on http://jarretbyrne.com/2015/06/197/ Thank you to him.
-     *
-     *  @return string
-     */
-    private function getClassNameFromFile($filepath)
-    {
-        $contents = file_get_contents($filepath);
-        $namespace = $class = '';
-        $getting_namespace = $getting_class = false;
-        foreach (token_get_all($contents) as $token) {
-            if (is_array($token) && $token[0] == T_NAMESPACE) {
-                $getting_namespace = true;
-            }
-
-            if (is_array($token) && in_array($token[0], [T_CLASS, T_TRAIT, T_INTERFACE])) {
-                $getting_class = true;
-            }
-
-            if ($getting_namespace === true) {
-                if (is_array($token) && in_array($token[0], [T_STRING, T_NS_SEPARATOR])) {
-                    $namespace .= $token[1];
-                } elseif ($token === ';') {
-                    $getting_namespace = false;
-                }
-            }
-
-            if ($getting_class === true) {
-                if (is_array($token) && $token[0] == T_STRING) {
-                    $class = $token[1];
-                    break;
-                }
-            }
-        }
-
-        return $namespace ? $namespace.'\\'.$class : $class;
-    }
-
-    /**
      * Parse the given Class to find some annotations related to BusinessEntities.
      */
     public function parse(\ReflectionClass $class)
@@ -337,5 +297,47 @@ class AnnotationDriver extends DoctrineAnnotationDriver
         }
 
         return $receiverPropertiesTypes;
+    }
+
+    /**
+     *  get_declared_classes doesn't list anymore all classes since issue #23014 of Symfony
+     *  I suggest using tokenizer. Faster than including or requiring all the files
+     *  Function recovered on http://jarretbyrne.com/2015/06/197/ Thank you to him.
+     *
+     *  @return string
+     *
+     * @param mixed $filepath
+     */
+    private function getClassNameFromFile($filepath)
+    {
+        $contents = file_get_contents($filepath);
+        $namespace = $class = '';
+        $getting_namespace = $getting_class = false;
+        foreach (token_get_all($contents) as $token) {
+            if (is_array($token) && $token[0] == T_NAMESPACE) {
+                $getting_namespace = true;
+            }
+
+            if (is_array($token) && in_array($token[0], [T_CLASS, T_TRAIT, T_INTERFACE])) {
+                $getting_class = true;
+            }
+
+            if ($getting_namespace === true) {
+                if (is_array($token) && in_array($token[0], [T_STRING, T_NS_SEPARATOR])) {
+                    $namespace .= $token[1];
+                } elseif ($token === ';') {
+                    $getting_namespace = false;
+                }
+            }
+
+            if ($getting_class === true) {
+                if (is_array($token) && $token[0] == T_STRING) {
+                    $class = $token[1];
+                    break;
+                }
+            }
+        }
+
+        return $namespace ? $namespace.'\\'.$class : $class;
     }
 }

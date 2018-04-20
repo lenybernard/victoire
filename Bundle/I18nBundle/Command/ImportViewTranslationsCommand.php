@@ -46,8 +46,6 @@ class ImportViewTranslationsCommand extends ContainerAwareCommand
     /**
      * @param InputInterface  $input
      * @param OutputInterface $output
-     *
-     * @return void
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -84,10 +82,10 @@ class ImportViewTranslationsCommand extends ContainerAwareCommand
                 }
                 $view->mergeNewTranslations();
                 $entityManager->flush();
-            } else {
             }
+
             $progress->advance();
-            $total++;
+            ++$total;
         }
 
         $progress->finish();

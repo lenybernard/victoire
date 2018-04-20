@@ -149,6 +149,14 @@ class Error404Controller extends Controller
     }
 
     /**
+     * @return string
+     */
+    protected function getBaseTemplatePath()
+    {
+        return 'VictoireSeoBundle:Error404';
+    }
+
+    /**
      * Remove error if there is more than one record, else return _empty template.
      *
      * @param Error404 $error404
@@ -198,13 +206,5 @@ class Error404Controller extends Controller
                 'v-ic-target'  => 'closest li',
             ],
         ]);
-    }
-
-    /**
-     * @return string
-     */
-    protected function getBaseTemplatePath()
-    {
-        return 'VictoireSeoBundle:Error404';
     }
 }

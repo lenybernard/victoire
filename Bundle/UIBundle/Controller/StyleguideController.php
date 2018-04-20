@@ -13,6 +13,8 @@ class StyleguideController extends Controller
      * @Route("/styleguide/{component}", name="victoire_ui_styleguide")
      *
      * @return Response
+     *
+     * @param null|mixed $component
      */
     public function indexAction($component = null)
     {

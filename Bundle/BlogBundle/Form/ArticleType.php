@@ -94,7 +94,22 @@ class ArticleType extends AbstractType
     }
 
     /**
+     * bind to Page entity.
+     *
+     * @param OptionsResolver $resolver
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+                'data_class'         => 'Victoire\Bundle\BlogBundle\Entity\Article',
+                'translation_domain' => 'victoire',
+                'cascade_validation' => true,
+            ]);
+    }
+
+    /**
      * @param \Symfony\Component\Form\FormInterface $form
+     * @param mixed                                 $data
      */
     protected function manageTags($data, $form)
     {
@@ -112,6 +127,7 @@ class ArticleType extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormInterface|null $form
+     * @param mixed                                      $blog
      *
      * @throws \Symfony\Component\Form\Exception\AlreadySubmittedException
      */
@@ -149,6 +165,7 @@ class ArticleType extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormInterface|null $form
+     * @param mixed                                      $blogId
      */
     protected function manageCategories($blogId, $form)
     {
@@ -173,6 +190,7 @@ class ArticleType extends AbstractType
 
     /**
      * @param \Symfony\Component\Form\FormInterface|null $form
+     * @param mixed                                      $blog_id
      */
     protected function manageTemplate($blog_id, $form)
     {
@@ -200,19 +218,5 @@ class ArticleType extends AbstractType
         } else {
             $form->remove('template');
         }
-    }
-
-    /**
-     * bind to Page entity.
-     *
-     * @param OptionsResolver $resolver
-     */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-                'data_class'         => 'Victoire\Bundle\BlogBundle\Entity\Article',
-                'translation_domain' => 'victoire',
-                'cascade_validation' => true,
-            ]);
     }
 }
